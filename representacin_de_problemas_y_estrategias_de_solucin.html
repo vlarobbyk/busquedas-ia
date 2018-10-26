@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_highlighter.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Representación de problemas y estrategias de solución </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_highlighter.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-4"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<section id="emptyHeader"></section>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li id="active"><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="active daddy">Representación de problemas y estrategias de solución</a>
+   <ul>
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul class="other-section">
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_heursticos.html" class="no-ch">Métodos de búsqueda heurísticos</a></li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="prerrequisitos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="bsquedas.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Representación de problemas y estrategias de solución</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id7">
+<div class="iDevice emphasis0">
+<div id="ta7_85" class="block iDevice_content">
+<p><span style="font-size: 14pt;">En esta unidad se abordarán los principales conceptos relacionados con la representación de problemas en la Inteligencia Artificial (IA), la representación del conocimiento, los métodos de búsqueda "sin razonamiento" y los métodos de búsqueda "heurísticos".</span><span style="font-size: 14pt;"></span><span style="font-size: 14pt;"></span></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper preknowledgeIdevice em_iDevice" id="id8">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Requisitos de software</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta8_52_2" class="block iDevice_content">
+<p>A fin de poder trabajar de forma más eficiente, se sugiere instalar la plataforma científica de datos <strong>Anaconda</strong>. Luego de ello, deberemos instalar algunos paquetes que nos permitirán desarrollar los algoritmos de búsquedas y ejemplos de resolución de problemas de satisfacción de restricciones (a fin de ilustrar de forma práctica cómo se representa el conocimiento para cierto tipo de problemas).</p>
+<p>A continuación se describen los pasos para realizar la instalación de las herramientas requeridas. Se sugiere empelar cualquiera de las distribuciones de GNU/Linux (Ubuntu 16 LTS, KUbuntu 16 LTS, etc.), ya que algunos paquetes no son sencillos de instalar en Windows.</p>
+<ol>
+<li><b>Instalación de Anaconda</b>
+<ul style="list-style-type: circle;">
+<li>Como primer paso debemos descargar el instalador desde la página oficial: <a href="https://www.anaconda.com/download/" target="_blank" title="Opciones de descarga de Anaconda" rel="noopener noreferrer">Descargas</a> (preferible la versión para <em>Python 3.7</em>).</li>
+<li>Una vez descargado, deberemos ubicarnos en la carpeta donde se almacenó el fichero <em>(Anaconda3-5.3.0-Linux-x86_64.sh</em>) y ejecutar el siguiente comando:
+<ul>
+<li>
+<div class="highlighted-code language-clike">
+<div>
+<pre><code>sudo bash Anaconda3-5.3.0-Linux-x86_64.sh</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<li>Deberemos aceptar la licencia e indicar la ubicación donde deseamos que se instale Anaconda.</li>
+<li>En el siguiente vídeo se puede observar el proceso para distribuciones basadas en Ubuntu 16.04 (LTS):
+<ul>
+<li><iframe width="560" height="315" src="//www.youtube.com/embed/JP60kTsVJ8E" allowfullscreen="allowfullscreen"></iframe></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Creación de entornos (no es necesario ejecutar este paso, ya que el paso siguiente se encarga de crear el entorno e instalar los paquetes requeridos): </b>
+<ul>
+<li>Con el siguiente comando procedemos a crear los entornos que se requieran:</li>
+<li>
+<div class="highlighted-code language-c">
+<div>
+<pre><code>conda create --name iaups</code></pre>
+</div>
+</div>
+<br />
+<ul>
+<li>Es importante tomar en cuenta que también podemos pedir que nos instale paquetes cuando se crea el entorno, por ejemplo que se cree el entorno con la versión 3.7 de Python:</li>
+<li>
+<div class="highlighted-code language-c">
+<div>
+<pre><code>conda create --name iaups python=3.7</code></pre>
+</div>
+</div>
+</li>
+</ul>
+<ul>
+<li>Si hemos cometido algún error con la creación del entorno, podemos borrarlo fácilmente con el siguiente comando:</li>
+<li>
+<div class="highlighted-code language-c">
+<div>
+<pre><code>conda env remove --name iaups</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+<li><b>Instalación de librerías requeridas</b></li>
+</ol>
+<ul>
+<li>A fin de poder resolver los diversos problemas y ejercicios que se plantearán a lo largo de la asignatura, se sugiere instalar los siguientes paquetes:
+<ul>
+<li>cython=0.28.2</li>
+<li>matplotlib=2.1.1</li>
+<li>jupyter=1.0.0</li>
+<li>nltk=3.2.5</li>
+<li>nb_conda=2.2*</li>
+<li>pandas=0.22.0</li>
+<li>pomegranate=0.9.0</li>
+<li>pydot=1.2.4</li>
+<li>pydotplus=2.0.2</li>
+<li>python=3.5.4</li>
+<li>scikit-learn=0.19.1</li>
+<li>scipy=1.0.0</li>
+<li>tqdm=4.19.4</li>
+<li>z3-solver</li>
+</ul>
+</li>
+<li>Sin embargo, para facilitar la tarea, en el AVAC encontrará un archivo llamado <em><strong>ia1-software.yml</strong></em> que contiene el descriptor para instalar todas las librerías  y crear el entorno <strong>iaups</strong>. Deberemos descargar el archivo y ejecutar el siguiente comando:
+<ul>
+<li>
+<div class="highlighted-code language-c">
+<div>
+<pre><code>conda env create -f ia1-software.yml</code></pre>
+</div>
+</div>
+Dicho comando realizará de forma automática la instalación de las herramientas requeridas y la generación del entorno. Finalmente, se sugiere instalar la herramienta Pygame (en el entorno <strong><em>iaups</em></strong> que se ha creado), de la siguiente forma:</li>
+<li>
+<div class="highlighted-code language-c">
+<div>
+<pre><code>conda install --name iaups -c cogsci pygame</code></pre>
+</div>
+</div>
+El parámetro "<strong><em>-c cogsci</em></strong>" indica que la librería <strong><em>pygame</em></strong> debe buscarse en el canal (repositorio) "<strong><em>cogsci</em></strong>".</li>
+<li>Con ello, estamos listos para poner en marcha nuestro entorno y usar Python:</li>
+<li>
+<div class="highlighted-code language-c line-numbers">
+<div>
+<pre><code>// Para activar el entorno usamos:
+source activate iaups 
+// Luego podemos acceder a la consola interactiva
+python
+
+// Para desactivar el entorno (una vez que salimos de Python con el comando exit()):
+source deactivate
+
+// Si deseamos correr un script desarrollado en Python, podemos ejecutar los siguientes comandos:
+
+source activate iaups
+python Fichero.py</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="prerrequisitos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="bsquedas.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

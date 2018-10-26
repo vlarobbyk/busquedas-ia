@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Métodos de búsqueda sin razonamiento </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-8"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<section id="emptyHeader"></section>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="daddy">Representación de problemas y estrategias de solución</a>
+   <ul class="other-section">
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li id="active"><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="active daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul>
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_heursticos.html" class="no-ch">Métodos de búsqueda heurísticos</a></li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="bsqueda_por_amplitud.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Métodos de búsqueda sin razonamiento</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id17">
+<div class="iDevice emphasis0">
+<div id="ta17_85" class="block iDevice_content">
+<p><span style="font-size: 14pt;">Los métodos de búsqueda "no informados" o "sin razonamiento" no poseen información adicional sobre los estados además de la que se provee en la definición del problema. Es por ello que estos métodos generarán una serie de estados sucesores hasta que puedan encontrar el estado objetivo <span>(Ertel, 2017)</span>. </span></p>
+<p><span style="font-size: 18.6667px;">A continuación veamos un problema que definido en la problemática de "buscar la mejor ruta en un mapa". Como se puede observar en la siguiente ilustración de algunos sectores de la Provincia del Cañar, tenemos definidas las distancias (en kilómetros) entre determinados sitios de interés:</span></p>
+<p style="text-align: center;"><span style="font-size: 18.6667px;"><img src="Problema_Viajero.png" width="876" height="603" /></span></p>
+<p><span style="font-size: 18.6667px;"></span><span style="font-size: 14pt;">Con ello, se busca la encontrar la mejor ruta de un punto inicial dado a un punto objetivo. El esquema propuesto se define de la siguiente manera <span>(Ertel, 2017)</span>:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;"><em><strong>Estado</strong></em>: punto de interés o ciudad donde el viajero se encuentra actualmente.</span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>Estado inicial</em></strong>: un punto de interés o ciudad de partida que se define de forma arbitraria.</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Estado objetivo</strong></em>: un punto de interés o ciudad arbitrario.</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Acciones</strong></em>: viajar de un punto de interés o ciudad a otra empleando las conexiones existentes.</span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>Función de coste</em></strong>: es la distancia de un punto a otro. Cada acción se corresponde a un eje en el grafo con una distancia como peso.</span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>Espacio de estados</em></strong>: todas las ciudades o puntos de interés (nodos) del grafo.</span></li>
+</ul>
+<p><span style="font-size: 14pt;">Por ejemplo, si deseamos ir desde el punto "Sageo" hasta la "Hacienda Josefina", existen diferentes caminos. La idea consiste en encontrar el camino que represente un menor coste. Por ejemplo, para ir de "Biblián" a "Azogues", el costo de la ruta será el siguiente:</span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"><img src="costo_ruta_Biblian-Azogues.png" alt="" width="601" height="40" /></span></p>
+<p><span style="font-size: 14pt;">Supongamos ahora que se nos proporciona la siguiente meta:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Estado inicial: <strong>Azogues</strong></span></li>
+<li><span style="font-size: 18.6667px;">Estado objetivo: <strong>Hacienda Josefina </strong></span></li>
+<li><span style="font-size: 18.6667px;">Objetivo: encontrar la ruta más corta en término de pasos (cuántos saltos da de un nodo a otro) y en términos de costo de ruta (distancia en kilómetros).</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;">Para resolver el problema, vamos a utilizar 3 técnicas de búsqueda que se detallarán seguidamente: </span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Búsqueda por amplitud</span></li>
+<li><span style="font-size: 18.6667px;">Búsqueda por el menor costo</span></li>
+<li><span style="font-size: 18.6667px;">Búsqueda por profundidad</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;"></span>Finalmente, es importante considerar que este tipo de problemas generalmente se representa a través de un <strong>grafo</strong>. Para este caso los nodos representan ciudades o puntos de interés, mientras que los <strong>arcos</strong> (líneas que unen 2 nodos) son los caminos que existen entre 2 ciudades o puntos de interés.</p>
+<p>Debe tomar en cuenta que los arcos (o caminos) pueden ser de dos tipos (básicamente):</p>
+<ul>
+<li><strong><em>No dirigidos</em></strong>: indica que se puede ir tanto del nodo "A" al "B", como del nodo "B" al "A" (camino bi-direccional):
+<ul>
+<li><img src="Arco-No-Dirigido.png" alt="" width="177" height="139" /></li>
+</ul>
+</li>
+<li><strong><em>Dirigidos</em></strong>: especifica que existe un solo camino (o bien se va de "A" a "B" o viceversa):
+<ul>
+<li><img src="Arco-Dirigido.png" alt="" width="177" height="139" /></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="bsqueda_por_amplitud.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

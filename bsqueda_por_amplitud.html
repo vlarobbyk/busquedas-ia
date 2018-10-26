@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Búsqueda por amplitud </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-10"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<section id="emptyHeader"></section>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="daddy">Representación de problemas y estrategias de solución</a>
+   <ul class="other-section">
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="current-page-parent daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul>
+      <li id="active"><a href="bsqueda_por_amplitud.html" class="active no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_heursticos.html" class="no-ch">Métodos de búsqueda heurísticos</a></li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="mtodos_de_bsqueda_sin_razonamiento.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="bsqueda_por_costo_uniforme.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Búsqueda por amplitud</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id19">
+<div class="iDevice emphasis0">
+<div id="ta19_85" class="block iDevice_content">
+<p><span style="font-size: 14pt;">En la búsqueda por amplitud o búsqueda primero en anchura (<em><strong>Breadth-First Search</strong></em>) el árbol de búsqueda es explorado desde la parte superior a la inferior. En este método es importante notar que la búsqueda se realiza revisando todas las trayectorias de cada nivel antes de pasar al siguiente. Si partimos de que estamos en el nivel <em><strong>N</strong></em> del árbol de búsqueda, no se avanzará hasta el nivel <strong><em>N+1</em></strong> mientras no se hayan visitado todas las trayectorias o caminos posibles del nivel actual  (De la Fuente López, 2010).</span></p>
+<p><span style="font-size: 14pt;">Por otra parte, también es importante considerar que este método buscará el camino más corto hasta la meta, es decir, no considera costo del camino, sino el número de nodos que debe recorrer hasta llegar a la meta. De igual forma, también se debe tener en cuenta que pueden existir 1 o más estados meta.</span></p>
+<p><span style="font-size: 14pt;">El proceso que realiza este método se lleva a cabo de acuerdo al algoritmo que se describe seguidamente <span>(Ertel, 2017):</span></span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"><span><img src="Algoritmo-Busqueda-Por-Amplitud.png" alt="" width="725" height="486" /></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14pt;">Como se aprecia en el algoritmo, debemos almacenar una lista con los nodos que vamos visitando. Esta lista generalmente se gestiona a través de la estructura de datos <strong>Cola</strong> (<strong>Queue</strong>). También deberemos contar con una lista que nos diga si los nodos ya fueron visitados. Esta puede ser una lista o arreglo simple de la forma: <strong>Visitados = {}.</strong></span></p>
+<p style="text-align: justify;"><span style="font-size: 14pt;">A fin de ilustrar de una manera sencilla cómo funciona este método, vamos a retomar el ejemplo del problema del "viajero", donde dado el siguiente grafo, debemos ir del nodo "Azogues" al nodo "Hacienda Josefina". A continuación se irá explicando paso a paso cómo se lleva a cabo el proceso de búsqueda:</span></p>
+<p style="text-align: center;"><img src="Problema_Viajero-Sin-Distancias.png" width="732" height="511" /></p>
+<ol>
+<li><span style="font-size: 14pt;">Como primer paso agregamos el nodo de partida a la cola. Con lo que nuestra lista quedaría definida de la siguiente forma: <strong><em>ListaNodos</em> = {<em>Azogues</em>}</strong>. </span>
+<ul style="font-size: 1em;">
+<li><span style="font-size: 14pt;">A continuación analizamos cuáles son las posibles acciones para el nodo "Azogues". Si partimos de este nodo, el camino actual a los puntos adyacentes (Sageo, Cojitambo, Luis Cordero, Zhullín y Borrero) tienen una longitud de 1 (ya que estamos en el punto inicial). Con ello, podemos movernos a 5 posibles nodos y los agregamos a la cola con sus respectivas distancias (previo a haber sacado al nodo "Azogues" que ya fue visitado y colocado en la lista de visitados):</span></li>
+<li><span style="font-size: 14pt;"><strong><em>ListaNodos = {Sageo, Cojitambo, Luis Cordero, Zhullín, Borrero}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {Azogues}</em></strong></span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"><strong><em><img src="Problema_Viajero-Sin-Distancias-1.png" width="830" height="579" /><br /></em></strong></span></li>
+<li><span style="font-size: 14pt;">Ahora debemos escoger el <em><strong>camino más corto</strong></em>, sin embargo, dado que los 5 caminos tienen una distancia de 1, podemos realizar esta selección de forma aleatoria o simplemente tomar el primer elemento que se colocó en la cola y sacarlos para a continuar visitarlo.  Supongamos que sale "Sageo". </span></li>
+</ul>
+</li>
+<li><span style="font-size: 14pt;">Como seleccionamos "Sageo", lo visitamos y preguntamos si es uno de los nodos meta. Como no lo es,  lo sacamos de la lista por que ya se visitó y ahora volvemos a determinar cuáles son las posibles acciones y distancias (respecto al punto de partida) para este nodo. Como se puede observar en la siguiente ilustración, desde "Sageo" solo podemos movernos a "Biblián". Con ello, la cola nos quedaría de la siguiente forma (observe que se coloca al nodo "Biblián" al final):</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>ListaNodos = {Cojitambo, Luis Cordero, Zhullín, Borrero, Biblián}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {Azogues, Sageo}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em><img src="Problema_Viajero-Sin-Distancias-2.png" alt="" width="830" height="579" style="display: block; margin-left: auto; margin-right: auto;" /><br /></em></strong></span></li>
+<li><span style="font-size: 18.6667px;">Ahora preguntamos si el nodo "Biblián" es un nodo meta, y como no es así, continuamos con la búsqueda.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 14pt;">El siguiente nodo que aparece en la cola es "Cojitambo", procedemos a visitarlo y a obtener las posibles acciones para dicho nodo. En este caso únicamente nos lleva al nodo "Déleg", por ello, sacamos de la cola al nodo "Cojitambo" (previo a preguntar si es un nodo meta), lo incluimos en la lista de visitados y luego pasamos a incluir al nodo "Déleg", como se aprecia en las siguientes listas y en la ilustración:</span>
+<ul style="font-size: 1em;">
+<li><span style="font-size: 14pt;"><strong><em>ListaNodos = {Luis Cordero, Zhullín, Borrero, Biblián, Déleg}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {Azogues, Sageo, Cojitambo}</em></strong></span></li>
+<li><img src="Problema_Viajero-Sin-Distancias-3.png" alt="" width="830" height="579" style="display: block; margin-left: auto; margin-right: auto;" /></li>
+<li><span style="font-size: 18.6667px;">Ahora preguntamos si el nodo "Déleg" es un nodo meta y como no es así, seguimos la búsqueda.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 14pt;">En este paso continuamos con el nodo "Luis Cordero", lo sacamos de la cola y lo ubicamos en la lista de visitados:</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>ListaNodos = {Zhullín, Borrero, Biblián, Déleg}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {Azogues, Sageo, Cojitambo, Luis Cordero}</em></strong></span></li>
+<li><span style="font-size: 14pt;">Preguntamos si "Luis Cordero" es un nodo meta y como no es así tratamos de expandir sus sucesores. Sin embargo, este nodo no tiene sucesores, por ello, continuamos la búsqueda con el siguiente nodo en la cola.</span></li>
+<li><span style="font-size: 14pt;"><img src="Problema_Viajero-Sin-Distancias-4.png" alt="" width="830" height="578" style="display: block; margin-left: auto; margin-right: auto;" /></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;"> En esta iteracción se debe analizar el nodo "Zhullín". Como se ha realizado anteriormente, sacamos al nodo "Zhullín" de la cola, preguntamos si es un nodo meta y lo colocamos en la lista de visitados. Como este nodo no es meta, desde aquí podemos solo ir al nodo "Hacienda Josefina". Procedemos agregar al nodo "Hacienda Josefina" a la cola y continuamos el análisis:</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>ListaNodos = {Borrero, Biblián, Déleg, Hacienda Josefina}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {Azogues, Sageo, Cojitambo, Luis Cordero, Zhullín}</em></strong></span></li>
+<li><img src="Problema_Viajero-Sin-Distancias-5.png" width="827" height="576" style="display: block; margin-left: auto; margin-right: auto;" /></li>
+<li><span style="font-size: 14pt;">Ahora preguntamos si el nodo "Hacienda Josefina" es un nodo meta. En este casi si lo es, por lo que lo marcamos como visitado y devolvemos la ruta al mismo como resultado:</span></li>
+<li><span style="font-size: 14pt;"><strong><em>Solución = {Azogues, Zhullín, Hacienda Josefina}</em></strong></span></li>
+</ul>
+</li>
+</ol>
+<p><span style="font-size: 18.6667px;">Como se aprecia, se ha alcanzado la solución expandiendo los nodos por niveles (como señala el algoritmo). En la siguiente ilustración podemos observar un ejemplo de cómo se han ido expandiendo los nodos. Es importante tomar en cuenta que el algoritmo finaliza expandiendo todos los nodos de un nivel dado (se ha ilustrado con colores los nodos de cada nivel y con color rojo el nodo meta):</span></p>
+<p style="text-align: center;"><span style="font-size: 18.6667px;"><img src="Arbol-Viajero-BFS.png" width="492" height="333" /></span></p>
+<h1><span style="font-size: 18.6667px;"></span>Análisis de coste</h1>
+<p><span style="font-size: 14pt;">En virtud de que la búsqueda por amplitud realiza la tarea en un problemas de cualquier profundidad y del mismo modo, llega a dicha profundidad en un tiempo finito, será completa si el factor de ramificación <strong><em>b</em></strong> es finito. La solución óptima, es decir, la más corta, se encontrará si el costo de todas las acciones es el mismo. Por otra parte, se debe anotar que el coste computacional (tiempo) y la memoria crecerán de forma exponencial de acuerdo a la profundidad del árbol  (Ertel, 2017). </span></p>
+<p><span style="font-size: 14pt;">Si tenemos un árbol con un factor de ramificación <em>b</em> y un nivel de profundidad <em><strong>d</strong></em>, el tiempo total de cómputo estará dado por la siguiente ecuación (Ertel, 2017):</span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"><img src="Coste-Busqueda-Anchura.png" alt="" width="430" height="102" /></span></p>
+<p><span style="font-size: 14pt;">A pesar de que sólo se almacena el último nivel en memoria, el espacio requerido en memoria es también del orden <strong><em>O(b^d).</em></strong></span></p>
+<h1><span style="font-size: 18.6667px;"></span><span style="font-size: 18.6667px;"></span>Propiedades de la búsqueda por amplitud</h1>
+<p><span style="font-size: 14pt;">A continuación detallamos algunas de las propiedades más importantes de este tipo de búsqueda (Oliehoek, 2018):</span></p>
+<ul>
+<li><span style="font-size: 14pt;">Ventajas:</span>
+<ul>
+<li><span style="font-size: 14pt;">La búsqueda por amplitud siempre encontrará una solución (si existe al menos 1).</span></li>
+<li><span style="font-size: 14pt;">Encuentra la solución más corta (con menor coste) en términos del número de operaciones que debe ejecutar.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 14pt;">Desventajas:</span>
+<ul>
+<li><span style="font-size: 14pt;">El tiempo requerido para encontrar la solución depende del factor de ramificación y la profundidad a la que se encuentre la solución.</span></li>
+<li><span style="font-size: 14pt;">La memoria requerida para encontrar la solución es <strong><em>b^n </em></strong><em></em>(<strong><em>b = factor de ramificación, n = profundidad</em></strong>).</span></li>
+</ul>
+</li>
+</ul>
+<h1>Análisis del algoritmo</h1>
+<p><span style="font-size: 14pt;">Seguidamente se describen los principales aspectos relacionados con el análisis del algoritmo en términos de completitud, optimalidad, complejidad temporal y complejidad espacial (De la Fuente López, 2010):</span></p>
+<ol>
+<li><span style="font-size: 14pt;"><em><strong>Completo:</strong></em> el algoritmo es completo, ya que encontrará la solución siempre y cuando se cuenten con los recursos necesarios (memoria y procesamiento).</span></li>
+<li><span style="font-size: 14pt;"><em><strong>Óptimo:</strong></em> es óptimo ya que devuelve la solución con menor coste.</span></li>
+<li><span style="font-size: 14pt;"><em><strong>Complejidad temporal:</strong></em> dependerá del factor de ramificación y de la profundidad del árbol. El coste temporal es <strong><em>O(b^n)</em></strong>, donde <strong><em>b</em></strong>  es el factor de ramificación y profundidad del árbol es <em><strong>n.</strong></em></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Complejidad espacial: </em></strong>requiere almacenar todos los estados que se vayan a explorar durante la búsqueda, con lo que el coste espacial es <em><strong>O(b^n)</strong></em>.</span></li>
+</ol>
+<p><span style="font-size: 14pt;"></span></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper activityIdevice em_iDevice" id="id20">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Ejercicio No 1: Búsqueda por anchura</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta20_44_2" class="block iDevice_content">
+<p><span style="font-size: 14pt;">Diseñe un grafo similar al que se ha presentado en este ejercicio partiendo de las siguientes coordenadas de latitud y longitud: <strong>-2.8801604,-79.0071712</strong>. Para ello deberá realizar las siguientes tareas:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Emplear la herramienta Google Maps (R) con las coordenadas antes indicadas (<a href="https://www.google.com/maps/@-2.8841036,-79.011849,15z" target="_blank" title="Coordenadas ejercicio" rel="noopener noreferrer">Link</a>).</span></li>
+<li><span style="font-size: 18.6667px;">Definir 11 puntos de interés (El Vecino, Bellavista, Loja Argelia, Misicata, etc.) y armar el grafo.</span></li>
+<li><span style="font-size: 18.6667px;">Especificar como punto de partida al sector "San Sebastián" y como objetivo "Totoracocha".</span></li>
+<li><span style="font-size: 18.6667px;">Establecer los arcos o caminos en 1 sola dirección, por ejemplo, del nodo "Bellavista" al nodo "Loja Argelia".</span></li>
+<li><span style="font-size: 18.6667px;">Realizar el proceso de búsqueda de forma similar a cómo se a explicado en este apartado, almacenando para ello los datos de la lista <strong>Visitados</strong> y de la <strong>Cola</strong>.</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;">El trabajo deberá desarrollarse de forma manual en el cuaderno.</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper readingIdevice em_iDevice" id="id23">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Ampliar y reforzar conocimientos</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta23_47_4" class="block iDevice_content">
+<p>A fin de reforzar los conocimientos adquiridos en este apartado, se sugiere revisar el siguiente vídeo sobre un ejemplo de búsqueda por amplitud:</p>
+<p></p>
+<p style="text-align: center;"><iframe width="560" height="315" src="//www.youtube.com/embed/1wu2sojwsyQ" allowfullscreen="allowfullscreen"></iframe></p>
+</section>
+<section id="ta23_47_5" class="block iDevice_content">
+<p>Luego de observar el vídeo, reflexione sobre lo siguiente: </p>
+<ul>
+<li>¿Qué criterio se considera para seleccionar los nodos?</li>
+<li>¿En el proceso de búsqueda se toma en cuenta el coste del camino?</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="mtodos_de_bsqueda_sin_razonamiento.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="bsqueda_por_costo_uniforme.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

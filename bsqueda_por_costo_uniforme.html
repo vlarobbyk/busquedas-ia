@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Búsqueda por costo uniforme </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-12"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<section id="emptyHeader"></section>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="daddy">Representación de problemas y estrategias de solución</a>
+   <ul class="other-section">
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="current-page-parent daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul>
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li id="active"><a href="bsqueda_por_costo_uniforme.html" class="active no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_heursticos.html" class="no-ch">Métodos de búsqueda heurísticos</a></li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="bsqueda_por_amplitud.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="bsqueda_por_profundidad.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Búsqueda por costo uniforme</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id27">
+<div class="iDevice emphasis0">
+<div id="ta27_85" class="block iDevice_content">
+<p><span style="font-size: 14pt;">La búsqueda por costo uniforme, a diferencia de la búsqueda por amplitud, tiene dos objetivos puntuales (Platt, 2016):</span></p>
+<ul>
+<li><span style="font-size: 14pt;">Considerar las distancias que existen a los nodos o puntos de interés a fin de ir seleccionando el mejor camino.</span></li>
+<li><span style="font-size: 14pt;">Tratar de encontrar la ruta con el menor coste (en términos de distancias).</span></li>
+</ul>
+<p><span style="font-size: 14pt;">Para ello este tipo de búsqueda selecciona los nodos de forma similar a lo que hace la búsqueda por amplitud, <span style="color: #ff0000;"><strong>pero considera el coste del camino, es decir, trata de abrir los nodos que generen el menor coste</strong></span>. Para ello debemos considerar los siguientes conceptos (Platt, 2016):</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Coste de ir un estado <strong>A</strong> a un estado <strong>B</strong>: <em><strong>c(A, B)</strong></em></span></li>
+<li><span style="font-size: 18.6667px;">Mínimo coste de ir del estado de partida al estado <strong><em>B</em></strong>: <em><strong>g(B)</strong></em><strong></strong></span></li>
+</ul>
+<p><span style="font-size: 14pt;">Por ello, en lugar de usar únicamente la lógica <strong><em>FIFO</em></strong> (cola) que emplea la búsqueda por amplitud, consideraremos también el coste del camino como base para establecer la prioridad de cada nodo (Platt, 2016).</span></p>
+<p><span style="font-size: 14pt;">A fin de ilustrar de una manera sencilla cómo funciona este método, vamos a retomar el ejemplo del problema del "viajero", donde dado el siguiente grafo, debemos ir del nodo "Azogues" al nodo "Hacienda Josefina". A continuación se irá explicando paso a paso cómo se lleva a cabo el proceso de búsqueda (considerando los costes en términos de distancia de nodos):</span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"><img src="Problema_Viajero.png" alt="" width="833" height="573" /></span></p>
+<ol>
+<li>Como primer paso agregamos el nodo de partida a la cola. Con lo que nuestra lista quedaría definida de la siguiente forma:<span style="font-size: 14pt;"> </span><strong style="font-size: 14pt;"><em>ListaNodos</em> = {<em>Azogues (0)</em>}</strong><span style="font-size: 14pt;">. Vemos que se coloca la distancia desde el nodo de partida al nodo actual. En este caso es 0, ya que "Azogues" es el nodo de partida. </span>
+<ul style="padding-left: 60px;">
+<li><span style="font-size: 14pt;">A continuación analizamos cuáles son las posibles acciones para el nodo "Azogues". Si partimos de este nodo, el camino actual a los puntos adyacentes: Sageo, Cojitambo, Luis Cordero, Zhullín y Borrero tienen un coste diferente, siendo el menor "Borrero". Con ello, podemos movernos a 5 posibles nodos y los agregamos a la cola ordenándolos de acuerdo al coste del camino (previo a haber sacado al nodo "Azogues" que ya fue visitado y colocado en la lista de visitados):</span></li>
+<li><span style="font-size: 14pt;"><strong style="font-size: 1em;"><em>ListaNodos = {Borrero (3.8), Sageo (4), Luis Cordero (5.2), Cojitambo (9.4), Zhullín (11.5) }</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong style="font-size: 1em;"><em>Visitados = {Azogues (0)}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong style="font-size: 1em;"><em><img src="Problema_Viajero-Con-Distancias-UC-1.png" width="917" height="383" style="display: block; margin-left: auto; margin-right: auto;" /></em></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Como se aprecia en la ilustración anterior, escogemos el camino que tiene el coste más corto, en este caso "Borrero", luego de expandir todas las posibilidades de acción dado el nodo origen. Este nodo se saca de la cola y se coloca en la lista de visitados. Ahora expandimos el nodo "Borreo" y vemos los costes que tendría ir por sus sucesores (en este caso solo 1): "San Cristóbal" = 15.3. Como en este caso el coste es muy alto, el algoritmo escoge el menor camino actual, que sería "Sageo" (coste = 4):</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><em><strong>ListaNodos = {Luis Cordero (5.2), Cojitambo (9.4), Zhullín (11.5), San Cristóbal (15.3) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Visitados = {Azogues (0), Borrero (3.8), Sageo (4) }</strong></em></span></li>
+<li style="text-align: center;"><span style="font-size: 18.6667px;"><em><strong><img src="Problema_Viajero-Con-Distancias-UC-3.png" width="917" height="383" /></strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong></strong></em></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">En el siguiente paso expandimos los nodos sucesores de "Sageo", que en este caso es un único nodo "Biblián". Como vemos, el coste para llegar a dicho nodo es 7.3, y aún existe un camino que tiene menor coste ("Luis Cordero"). Por ello, ahora se visita el nodo "Luis Cordero" (se saca de a lista de nodos y se lo marca como visitado luego de verificar que no sea un nodo meta):</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><em><strong>ListaNodos = {Biblián (7.3), Cojitambo (9.4), Zhullín (11.5), San Cristóbal (15.3) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Visitados = {Azogues (0), Borrero (3.8), Sageo (4), Luis Cordero (5.2) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong><img src="Problema_Viajero-Con-Distancias-UC-4.png" alt="" width="917" height="383" style="display: block; margin-left: auto; margin-right: auto;" /></strong></em></span></li>
+<li><span style="font-size: 18.6667px;"></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">En este paso expandimos los nodos sucesores de "Luis Cordero", sin embargo, como no tiene nodos y no hemos llegado al nodo meta, debemos expandir aquel camino que sea el siguiente de menor coste. Con ello, el actual camino de menor coste es hacia el nodo "Biblián". Procedemos a visitarlo y expandir sus nodos (previo a verificar si es un nodo meta). Como es el procedimiento, lo sacamos de la cola y lo ubicamos en la lista nodos visitados:</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><strong><em>ListaNodos = {Cojitambo (9.4), Zhullín (11.5), San Cristóbal (15.3) }</em></strong></span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>Visitados = {Azogues (0), Borrero (3.8), Sageo (4), Luis Cordero (5.2), Biblián (7.3) }</em></strong></span></li>
+<li><span style="font-size: 18.6667px;"><strong><em><img src="Problema_Viajero-Con-Distancias-UC-5.png" alt="" width="917" height="383" style="display: block; margin-left: auto; margin-right: auto;" /></em></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Ahora debemos expandir los nodos sucesores del nodo "Biblián", sin embargo este nodo no los tiene. Por ello, seleccionamos el camino que tenga el menor coste actual, que es "Cojitambo". Visitamos ese nodo, verificamos si es un nodo meta, y procedemos a expandir sus hijos (colocándolo en la lista de visitados):</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><strong><em>ListaNodos = {Zhullín (11.5), San Cristóbal (15.3), Déleg (22.4) }</em></strong></span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>Visitados = {Azogues (0), Borrero (3.8), Sageo (4), Luis Cordero (5.2), Biblián (7.3), Cojitambo (9.4)}</em></strong></span></li>
+<li><span style="font-size: 18.6667px;"><strong><em><img src="Problema_Viajero-Con-Distancias-UC-6.png" width="917" height="383" style="display: block; margin-left: auto; margin-right: auto;" /></em></strong></span></li>
+<li><span style="font-size: 18.6667px;"><strong><em></em></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Llegar al nodo "Déleg" nos costaría 22.4. Por ello, ahora escogemos el camino que tenga el menor coste, en este caso es el nodo "Zhullín". Lo visitamos, agregamos a la lista de visitados (luego de sacarlo de la cola) y expandimos sus sucesores:</span>
+<ul>
+<li><span style="font-size: 14pt;"><em><strong>ListaNodos = { San Cristóbal (15.3), Déleg (22.4) , Hacienda Josefina (25.8) }</strong></em></span></li>
+<li><span style="font-size: 14pt;"><em><strong>Visitados = {Azogues (0), Borrero (3.8), Sageo (4), Luis Cordero (5.2), Biblián (7.3), Cojitambo (9.4), Zhullín (11.5) }</strong></em></span></li>
+<li><img src="Problema_Viajero-Con-Distancias-UC-7.png" alt="" width="917" height="383" style="display: block; margin-left: auto; margin-right: auto;" /></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">En este punto, tenemos 3 caminos para seguir, donde el de menor coste es tomar el nodo "San Cristóbal", cuyo coste es 15.3. Para ello, visitamos el nodo, verificamos si es un nodo meta, lo sacamos de la cola y lo ubicamos en la lista de visitados:</span>
+<ul>
+<li><span style="font-size: 14pt;"><em><strong>ListaNodos = {Hacienda Josefina (18.9), Déleg (22.4) , Hacienda Josefina (25.8) }</strong></em></span></li>
+<li><span style="font-size: 14pt;"><em><strong>Visitados = {Azogues (0), Borrero (3.8), Sageo (4), Luis Cordero (5.2), Biblián (7.3), Cojitambo (9.4), Zhullín (11.5), San Cristóbal (15.3) }</strong></em></span></li>
+<li><img src="Problema_Viajero-Con-Distancias-UC-8.png" alt="" width="917" height="383" style="display: block; margin-left: auto; margin-right: auto;" /></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Ahora procedemos a analizar cuál es el camino con menor coste, y en este caso, es el que lleva al nodo "Hacienda Josefina" (yendo de "San Cristóbal"). Visitamos el nodo "Hacienda Josefina", expandimos sus sucesores, verificamos si es un nodo meta (y como si lo es, lo anotamos). <span style="color: #ff0000;"><strong>Es importante anotar que no podemos volver a agregar al nodo "San Cristóbal" por que ya se visitó</strong></span>.</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>ListaNodos = {Déleg (22.4) , Hacienda Josefina (25.8) }</em></strong></span></li>
+<li><span style="font-size: 14pt;"><em><strong>Visitados = {Azogues (0), Borrero (3.8), Sageo (4), Luis Cordero (5.2), Biblián (7.3), Cojitambo (9.4), Zhullín (11.5), San Cristóbal (15.3), Hacienda Josefina (18.9) }</strong></em></span></li>
+<li><img src="Problema_Viajero-Con-Distancias-UC-9.png" width="917" height="383" style="display: block; margin-left: auto; margin-right: auto;" /></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">En este paso, verificamos que "Hacienda Josefina" es un nodo meta, y dado que tiene el camino más corto, detenemos el proceso. Ahora procedemos a devolver la ruta exacta:</span>
+<ul>
+<li><span style="font-size: 18.6667px; color: #ff0000;"><em><strong>Ruta = {Azogues, Borrero, San Cristóbal, Hacienda Josefina}</strong></em></span></li>
+</ul>
+</li>
+</ol>
+<p></p>
+<p><span style="font-size: 14pt;"></span></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper activityIdevice em_iDevice" id="id29">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Ejercicio No 2: Búsqueda por costo uniforme</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta29_53_2" class="block iDevice_content">
+<p><span>Diseñe un grafo similar al que se ha presentado en este ejercicio partiendo de las siguientes coordenadas de latitud y longitud: <strong>-2.8801604,-79.0071712</strong>. Para ello deberá realizar las siguientes tareas:</span></p>
+<ul>
+<li><span>Emplear la herramienta Google Maps (R) con las coordenadas antes indicadas (<a href="https://www.google.com/maps/@-2.8841036,-79.011849,15z" target="_blank" title="Coordenadas ejercicio" rel="noopener noreferrer">Link</a>).</span></li>
+<li><span>Definir 11 puntos de interés (El Vecino, Bellavista, Loja Argelia, Misicata, etc.) y armar el grafo.</span></li>
+<li><span>Especificar como punto de partida al sector "San Sebastián" y como objetivo "Totoracocha".</span></li>
+<li><span>Establecer los arcos o caminos en 1 sola dirección, por ejemplo, del nodo "Bellavista" al nodo "Loja Argelia".</span></li>
+<li><span>Calcular la distancia que existe entre los puntos de interés. Para ello puede usar la herramienta de medida (click con el botón derecho del razón y seleccionar la opción "Medir").</span></li>
+<li><span>Realizar el proceso de búsqueda de forma similar a cómo se a explicado en este apartado, almacenando para ello los datos de la lista <strong>Visitados</strong> y de la <strong>Cola</strong>.</span></li>
+</ul>
+<p><span>El trabajo deberá desarrollarse de forma manual en el cuade</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper readingIdevice em_iDevice" id="id30">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Actividad de Lectura</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta30_54_4" class="block iDevice_content">
+<p>A fin de reforzar los conocimientos adquiridos en este apartado, se sugiere revisar el siguiente vídeo sobre un ejemplo de búsqueda por costo uniforme:</p>
+<p style="text-align: center;"><iframe width="560" height="317" src="//www.youtube.com/embed/dRMvK76xQJI" allowfullscreen="allowfullscreen"></iframe></p>
+<p style="text-align: left;"><span style="font-size: 14pt;">Luego de ver el vídeo reflexione sobre lo siguiente:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">¿Qué se decisión se toma cuando existen 2 caminos con coste similar?</span></li>
+<li><span style="font-size: 18.6667px;">A pesar de haber llegado a estar cerca de un nodo meta, ¿se toma ese camino? ¿Por qué?</span></li>
+</ul>
+</section>
+<section id="ta30_54_5" class="block iDevice_content">
+
+</section>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="bsqueda_por_amplitud.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="bsqueda_por_profundidad.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

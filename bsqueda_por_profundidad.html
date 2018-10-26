@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Búsqueda por profundidad </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-11"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<section id="emptyHeader"></section>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="daddy">Representación de problemas y estrategias de solución</a>
+   <ul class="other-section">
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="current-page-parent daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul>
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li id="active"><a href="bsqueda_por_profundidad.html" class="active no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_heursticos.html" class="no-ch">Métodos de búsqueda heurísticos</a></li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="bsqueda_por_costo_uniforme.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="ejercicios_de_refuerzo.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Búsqueda por profundidad</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id24">
+<div class="iDevice emphasis0">
+<div id="ta24_85" class="block iDevice_content">
+<p><span style="font-size: 14pt;">En la búsqueda por profundidad (<em><strong>Depth-First Search</strong></em>) también el árbol de búsqueda es explorado desde la parte superior a la inferior. En este método es importante notar que la búsqueda se escoge un nodo y expande solo uno de sus hijos, y así se realiza sucesivamente. Este proceso se seguirá repitiendo hasta que el nodo no tenga más sucesores. Si ocurre esto, se retrocede un nivel y se selecciona alguno de los otros nodos abiertos en el nivel. Si no existen nodos que explorar, se retrocede un nivel más (De la Fuente López, 2010).</span></p>
+<p><span style="font-size: 14pt;">En vista de lo anterior, se puede decir que este tipo de búsqueda se torna muy profunda, ya que solo cuando un nodo no tiene sucesores y no se encuentra el nodo meta, el siguiente nodo se expandirá haciendo <em>backtracking</em> o retroceso (al último nodo abierto anteriormente) (Ertel, 2017).</span></p>
+<p><span style="font-size: 14pt;">El proceso que realiza este método se lleva a cabo de acuerdo al algoritmo que se describe seguidamente (Ertel, 2017):</span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"><img src="Algoritmo-Busqueda-Por-Profundidad.png" alt="" width="819" height="498" /></span><span style="font-size: 14pt;"></span></p>
+<p><span style="font-size: 18.6667px;">Es importante observar que se incorporan 3 funciones (Ertel, 2017):</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;"><strong><em>MetaAlcanzada()</em></strong>: esta función verifica si un nodo dado es una meta.</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Primer()</strong></em>: esta función devuelve el primer elemento de una lista dada.</span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>Rest()</em></strong>: esta función devuelve el resto de elementos de una lista dada.</span></li>
+</ul>
+<p><span style="font-size: 14pt;">A fin de ilustrar de una manera sencilla cómo funciona este método, vamos a retomar el ejemplo del problema del "viajero", donde dado el siguiente grafo, debemos ir del nodo "Azogues" al nodo "Hacienda Josefina". A continuación se irá explicando paso a paso cómo se lleva a cabo el proceso de búsqueda:</span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"><img src="Problema_Viajero.png" alt="" width="837" height="576" /></span></p>
+<p style="text-align: left;"><span style="font-size: 14pt;">Para resolver el problema, necesitamos saber qué nodos se han visitado a fin de no quedar en un bucle infinito. De forma similar a lo realizado en la búsqueda por amplitud, emplearemos una <em><strong>pila</strong></em> para colocar los nodos visitados y una lista de salida. Es importante recordar que una <em><strong>pila</strong></em> maneja la lógica <strong>LIFO</strong> (<em>Last-In First-Out, Último en Entrar, Primero en Salir).</em></span></p>
+<p style="text-align: left;"><span style="font-size: 14pt; text-align: justify;"></span></p>
+<ol>
+<li><span style="font-size: 14pt;">Como primer paso agregamos el nodo de partida a la pila. Con lo que nuestra pila quedaría definida de la siguiente forma: <strong style="font-size: 14pt; text-align: justify;"><em>Pila</em> = {<em>Azogues</em>}</strong><span style="text-align: justify;">.</span></span>
+<ul>
+<li><span style="font-size: 14pt;">A continuación analizamos cuáles son las posibles acciones para el nodo "Azogues". Si partimos de este nodo, el camino actual a los puntos adyacentes (Sageo, Cojitambo, Luis Cordero, Zhullín y Borrero) tienen diferentes costes. Por ejemplo, pasar de "Azogues" a "Sageo" tiene un coste de 4, de "Azogues" a "Zhullín" 11.5, etc. Como podemos ver, la mejor opción es ir a "Borrero" ya que tiene un coste de <strong style="font-size: 1em;">3.8</strong>. Con ello, agregamos "Borrero" a la pila y a la lista de salida:</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>Coste del camino = 3.8</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Pila = {Borrero, Azogues} </em></strong><em></em>(note que en la pila los elementos que se van agregando se colocan al inicio, por el modelo LIFO que se maneja).</span></li>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {Azogues, Borrero}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em><img src="Problema_Viajero-Con-Distancias-DFS-1.png" width="833" height="573" style="display: block; margin-left: auto; margin-right: auto;" /></em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em></em></strong></span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span style="font-size: 14pt; text-align: justify;">A continuación validamos si "Borrero" es un nodo meta, como no lo es, continuamos. Ahora analizamos las posibles acciones para el estado "Borrero". Dado que sólo existe 1 camino para los nodos sucesores, tomamos el camino a "San Cristóbal" que tiene un coste de <strong>11.5</strong>. Agregamos al nodo "San Cristóbal" a la pila y a la lista de nodos visitados, con lo que obtenemos los siguientes resultados:</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em><span style="text-align: justify;">Coste del camino = 3.8 + 11.5 = 15.3</span></em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em><span style="text-align: justify;">Pila = {San Cristóbal, Borrero, Azogues} </span></em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em><span style="text-align: justify;">Visitados = {Azogues, Borrero, San Cristóbal}</span></em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em><span style="text-align: justify;"><img src="Problema_Viajero-Con-Distancias-DFS-2.png" width="833" height="573" style="display: block; margin-left: auto; margin-right: auto;" /></span></em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em><span style="text-align: justify;"></span></em></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 14pt; text-align: justify;">A continuación verificamos si "San Cristobal" es un nodo meta, dado que no lo es, continuamos con el proceso de búsqueda. Ahora analizamos las posibles acciones para el nodo "San Cristobal", al igual que en el caso anterior, solo existe un camino posible hacia "Hacienda Josefina". Colocamos este nodo en la pila y en la lista de visitados y calculamos el coste actual del camino, con esto, obtenemos los siguientes resultados:</span>
+<ul>
+<li><span style="font-size: 14pt;"><em><strong><span style="text-align: justify;">Coste del camino = 3.8 + 11.5 + 3.6 = 18.9</span></strong></em></span></li>
+<li><span style="font-size: 14pt;"><em><strong><span style="text-align: justify;">Pila = {San Cristóbal, Borrero, Azogues}</span></strong></em></span></li>
+<li><span style="font-size: 14pt;"><em><strong><span style="text-align: justify;">Visitados = {Azogues, Borrero, San Cristóbal}</span></strong></em></span></li>
+<li><span style="font-size: 14pt;"><em><strong><span style="text-align: justify;"><img src="Problema_Viajero-Con-Distancias-DFS-3.png" alt="" width="833" height="573" style="display: block; margin-left: auto; margin-right: auto;" /></span></strong></em></span></li>
+</ul>
+</li>
+<li><span style="font-size: 14pt; text-align: justify;">En este paso constatamos si el nodo "Hacienda Josefina" es un nodo meta y como sí es así, finaliza la búsqueda.</span></li>
+</ol>
+<p><span style="font-size: 14pt; text-align: justify;"></span><span style="font-size: 14pt;">En la siguiente ilustración se puede apreciar cómo se realiza la búsqueda con este algoritmo. Como se observa, cada ramal del árbol se explora hasta llegar a los nodos hojas, y  una vez que se llega a un nodo hoja, se hace <em><strong>retroceso</strong></em> (<em><strong>backtracking</strong></em>) y se busca expandir los otros nodos sucesores del nodo padre:</span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"><img src="Arbol-Viajero-DFS.png" alt="" width="189" height="493" /></span></p>
+<p><span style="font-size: 14pt;"></span></p>
+<h1><span style="font-size: 14pt;"></span>Propiedades de la búsqueda por profundidad</h1>
+<p><span style="font-size: 14pt;">A continuación detallamos algunas de las propiedades más importantes de este tipo de búsqueda (Oliehoek, 2018):</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">La búsqueda por profundidad siempre encontrará una solución (si existe al menos 1) a pesar de que existan caminos infinitos.</span></li>
+<li><span style="font-size: 18.6667px;">No se garantiza que la solución encontrada sea la óptima.</span></li>
+<li><span style="font-size: 18.6667px;">La cantidad de tiempo y memoria que requiere este algoritmo es mucho menor que el empleado en la búsqueda por amplitud.</span></li>
+<li><span style="font-size: 18.6667px;">Para un factor de ramificación <em><strong>b</strong></em> y una máxima profundidad <em><strong>n</strong></em> del árbol de búsqueda, la búsqueda por profundidad requiere almacenar <strong><em>b*n nodos</em></strong>.</span></li>
+</ul>
+<h1>Análisis del algoritmo</h1>
+<p><span style="font-size: 14pt;">Seguidamente se describen los principales aspectos relacionados con el análisis del algoritmo en términos de completitud, optimalidad, complejidad temporal y complejidad espacial (De la Fuente López, 2010):</span></p>
+<ol>
+<li><span style="font-size: 18.6667px;"><em><strong>Completo:</strong></em> el algoritmo no es completo ya que no encontrará una solución que esté a un nivel de profundidad mayor al que se realice la búsqueda. De igual forma, no es completo, ya que se puede entrar a buscar en una rama del árbol que no contenga nodos meta.</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Óptimo:</strong></em> no es óptimo ya que devuelve la primera solución que encuentre y dicha solución puede no ser la que tenga el camino con menor coste. Asimismo, esta solución puede estar en un nivel mucho más profundo que otras soluciones.</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Complejidad temporal:</strong></em> el peor de los casos se dará cuando encuentre el estado meta en el último nivel de la profundidad de la última rama del árbol. De darse esta situación, el algoritmo termina expandiendo todas las ramas y estados, dando como resultado un valor <strong><em>O(b^n).</em></strong></span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>Complejidad espacial: </em></strong>el peor de los casos se dará cuando se expanda estados sin eliminar sus hijos o sucesores. Para un factor de ramificación <strong><em>b</em></strong> se almacenarán <strong><em>m</em></strong> estados con profundidad <em><strong>n</strong></em>, por lo que tendremos <strong><em>O(nb)</em></strong> estados.</span></li>
+</ol>
+<p><span style="font-size: 14pt;"></span></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper activityIdevice em_iDevice" id="id25">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Ejercicio No 2: Búsqueda por profundidad</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta25_49_2" class="block iDevice_content">
+<p><span style="font-size: 14pt;">Diseñe un grafo similar al que se ha presentado en este ejercicio partiendo de las siguientes coordenadas de latitud y longitud: <strong>-2.8801604,-79.0071712</strong>. Para ello deberá realizar las siguientes tareas:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Emplear la herramienta Google Maps (R) con las coordenadas antes indicadas (<a href="https://www.google.com/maps/@-2.8841036,-79.011849,15z" target="_blank" title="Coordenadas ejercicio" rel="noopener noreferrer">Link</a>).</span></li>
+<li><span style="font-size: 18.6667px;">Definir 11 puntos de interés (El Vecino, Bellavista, Loja Argelia, Misicata, etc.) y armar el grafo.</span></li>
+<li><span style="font-size: 18.6667px;">Especificar como punto de partida al sector "San Sebastián" y como objetivo "Totoracocha".</span></li>
+<li><span style="font-size: 18.6667px;">Establecer los arcos o caminos en 1 sola dirección, por ejemplo, del nodo "Bellavista" al nodo "Loja Argelia".</span></li>
+<li><span style="font-size: 18.6667px;">Calcular la distancia que existe entre los puntos de interés. Para ello puede usar la herramienta de medida (click con el botón derecho del razón y seleccionar la opción "Medir").</span></li>
+<li><span style="font-size: 18.6667px;">Realizar el proceso de búsqueda de forma similar a cómo se a explicado en este apartado, almacenando para ello los datos de la lista <strong>Visitados</strong> y de la <strong>Cola</strong>.</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;">El trabajo deberá desarrollarse de forma manual en el cuaderno.</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper readingIdevice em_iDevice" id="id26">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Actividad de lectura</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta26_50_4" class="block iDevice_content">
+<p>A fin de reforzar los conocimientos adquiridos en este apartado, se sugiere revisar el siguiente vídeo sobre un ejemplo de búsqueda por profundidad:</p>
+<p></p>
+<p style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/h1RYvCfuoN4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"></iframe></p>
+<p style="text-align: left;"><span style="font-size: 14pt;">Luego de haber visto el vídeo, reflexione sobre lo siguiente:</span></p>
+<ul>
+<li><span style="font-size: 14pt;">¿Cómo se seleccionan los nodos para hacer la búsqueda?</span></li>
+<li><span style="font-size: 14pt;">¿Cuántos ramales explora este algoritmo?</span></li>
+</ul>
+</section>
+<section id="ta26_50_5" class="block iDevice_content">
+
+</section>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="bsqueda_por_costo_uniforme.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="ejercicios_de_refuerzo.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Espacios de búsqueda y factor de ramificación </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<link rel="stylesheet" type="text/css" href="pbl-tools.css" />
+<script type="text/javascript" src="pbl-tools.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-7"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<section id="emptyHeader"></section>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li class="current-page-parent"><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="current-page-parent daddy">Representación de problemas y estrategias de solución</a>
+   <ul>
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li id="active"><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="active no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul class="other-section">
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_heursticos.html" class="no-ch">Métodos de búsqueda heurísticos</a></li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="agentes_en_inteligencia_artificial.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Espacios de búsqueda y factor de ramificación</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id11">
+<div class="iDevice emphasis0">
+<div id="ta11_85" class="block iDevice_content">
+<p><span style="font-size: 18.6667px;">Los algoritmos de búsqueda son aquellos que se encargan de resolver problemas de búsqueda (valga la redundancia). Para ello, este tipo de algoritmos deben recuperar información almacenada en una estructura que se conoce como <strong>espacio de búsqueda</strong> que pertenece a un dominio del problema.<strong> </strong> Estas estructuras pueden ser representadas a través de listas ligadas, árboles de búsqueda o arreglos </span><span style="font-size: 14pt;">(Ertel, 2017).</span></p>
+<p><span style="font-size: 14pt;">Para ilustrar este caso, vamos a representar a continuación el espacio de búsqueda del problema de colocar <strong>N</strong> reinas en un tablero de ajedrez de <strong>N</strong> casilleros de lado (total de casilleros = <strong>N x N</strong>), sin que las reinas se pongan en jaque una otra. </span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"><img src="EspacioBusqueda.png" alt="" width="655" height="371" /></span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"></span></p>
+<p><span style="font-size: 14pt;">Como apreciar en la figura anterior, tenemos la representación del problema de ubicar 4 reinas en un tablero de ajedrez de 4 casilleros por lado (total de casilleros = 16).</span></p>
+<p><span style="font-size: 18.6667px;">Algunos importantes aspectos a considerar son los siguientes:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">La información está representada a través de un árbol.</span></li>
+<li><span style="font-size: 18.6667px;">En la raíz se puede observar el estado inicial (<strong>So</strong>)</span></li>
+<li><span style="font-size: 18.6667px;">A medida que vamos colocando las reinas, se van generando ramas del árbol que constituyen caminos que podemos seguir, hasta encontrar aquél camino que nos lleve a la solución.</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;">Para este problema y en base a los criterios que se definieron en la sección "Búsquedas", tendríamos los siguientes valores para el problema de búsqueda:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;"><em>Estado: </em>matriz de 4 filas por 4 columnas que pueden tener un indicador que especifica si la reina ocupa un casillero dado por una fila y una columna específica. Los demás casilleros se consideran libres.<br /></span></li>
+<li><span style="font-size: 18.6667px;"><em>Estado inicial:</em> para este problema partimos del casillero en blanco, es decir, donde aún no se ha colocado ninguna reina.</span></li>
+<li><span style="font-size: 18.6667px;"><em>Estado objetivo</em>: aquel estado en el que están colocadas las 4 reinas sin ponerse en jaque la una a la otra.</span></li>
+<li><span style="font-size: 18.6667px;"><em>Acciones</em>: colocar una reina en un casillero específico.</span></li>
+<li><span style="font-size: 18.6667px;"><em>Función de coste</em>:  función constante 1, ya que todas las acciones tienen igual coste (para otros problemas será distinto).</span></li>
+</ul>
+<h4><span style="font-size: 18.6667px;">Factor de ramificación</span></h4>
+<p><span style="font-size: 18.6667px;">El factor de ramificación es el número de estados sucesores de un estado <strong>s </strong>dado y se presenta como sigue:</span></p>
+<p style="text-align: center;"><span style="font-size: 18.6667px;"><img src="bs.png" alt="" width="49" height="31" /></span></p>
+<p style="text-align: justify;"><span style="font-size: 18.6667px;">El factor de ramificación efectivo de un árbol de profundidad <strong>d</strong> con un total de <strong>n</strong> nodos, se define como el factor de ramificación de un árbol con un factor constante de ramificación, igual profundidad, e igual <strong>n</strong>. Un algoritmo de búsqueda se dice que es <strong>completo</strong> si encuentra una solución en cualquier problema resoluble. Si el algoritmo de búsqueda completo termina sin encontrar una solución, el problema no se puede resolver(Ertel, 2017).</span></p>
+<p style="text-align: justify;"><span style="font-size: 18.6667px;">Para una profundidad <strong>d</strong> dada con un total de nodos <strong>n</strong>, el factor de ramificación puede ser calculado resolviendo la siguiente ecuación (Ertel, 2017):</span></p>
+<p style="text-align: center;"><span style="font-size: 18.6667px;"><img src="factorramificacion.png" alt="" width="215" height="84" /></span></p>
+<p style="text-align: justify;"><span style="font-size: 18.6667px;"></span><span style="font-size: 14pt;">Esto se debe a que un árbol con un factor constante de ramificación y una profundidad d, tiene un total de nodos (Ertel, 2017):</span></p>
+<p style="text-align: center;"><span style="font-size: 18.6667px;"><img src="factorramificacion-sum.png" alt="" width="384" height="118" /></span></p>
+<h4 style="text-align: justify;"><span style="font-size: 18.6667px;"></span>Analizando el problema de las N reinas</h4>
+<p>A fin de determinar cuántos estados tiene el problema de ubicar <strong>N</strong> reinas en un tablero de <strong>N filas </strong>y<strong> N columnas</strong>, trabajaremos con el valor de <strong>N = 4</strong>. </p>
+<p>A continuación vamos a analizar cuántos estados se generan si intentamos colocar las reinas bajo distintos criterios:</p>
+<ol style="list-style-type: lower-greek;">
+<li>Si colocamos la reina en cualquier casillero sin realizar ninguna validación, es decir sin importar si el casillero ya está ocupado por otra reina, tendremos lo siguiente (donde <strong><em>n</em></strong> representa el número de estados):</li>
+</ol>
+<p style="text-align: center;"><img src="nreinas-criterio1.png" width="862" height="54" /></p>
+<p style="text-align: center;"></p>
+<ol style="list-style-type: lower-greek;">
+<li>Si colocamos la reina en cualquier casillero, respetando aquellos casilleros que ya estén ocupados por otras reina, tendremos lo siguiente (donde <strong><em>n</em></strong> representa el número de estados): </li>
+</ol>
+<p style="text-align: center;"><img src="nreinas-criterio2.png" width="736" height="104" /></p>
+<ol style="list-style-type: lower-greek;">
+<li>Si a más del criterio anterior, colocamos las reinas en una columna distinta siempre, tenemos lo siguiente:</li>
+</ol>
+<p style="text-align: center;"><img src="nreinas-criterio3.png" alt="" width="358" height="40" /></p>
+<ol style="list-style-type: lower-greek;">
+<li>Finalmente si colocamos las reinas en una fila y una columna distinta siempre se tiene lo que se señala a continuación:</li>
+</ol>
+<p style="text-align: center;"><img src="nreinas-criterio4.png" alt="" width="414" height="37" /></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper pblIdevice em_iDevice" id="id16">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_activity.png)"><h1 class="iDeviceTitle">Tarea: Cálculo del factor de ramificación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta16_50_2" class="block iDevice_content">
+<div class="pbl-information"><p><span style="font-size: 14pt;">Realice el cálculo del factor de ramificación del problema de las <strong>N</strong> reinas (con N = 4). Para ello deberá realizar las siguientes actividades:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Asumir que el factor de ramificación es constante.</span></li>
+<li><span style="font-size: 18.6667px;">Despejar el valor de <strong>b</strong></span></li>
+<li><span style="font-size: 18.6667px;">Consultar sitios externos sobre cómo realizar el cálculo</span></li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="agentes_en_inteligencia_artificial.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>
