@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Búsqueda A* </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-15"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<section id="emptyHeader"></section>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="daddy">Representación de problemas y estrategias de solución</a>
+   <ul class="other-section">
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul class="other-section">
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="mtodos_de_bsqueda_heursticos.html" class="current-page-parent daddy">Métodos de búsqueda heurísticos</a>
+   <ul>
+      <li id="active"><a href="bsqueda_a.html" class="active no-ch">Búsqueda A*</a></li>
+   </ul>
+   </li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="mtodos_de_bsqueda_heursticos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="referencias.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Búsqueda A*</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id33">
+<div class="iDevice emphasis0">
+<div id="ta33_85" class="block iDevice_content">
+<p><span style="font-size: 14pt;">La búsqueda A* emplea una función matemática a fin de seleccionar el camino que tenga el menor coste posible. Esta función se define de la siguiente forma <span>(De la Fuente López, 2010).</span>:</span></p>
+<p style="text-align: center;"><img src="Funcion-Busqueda-Heuristica.png" alt="" width="353" height="43" /></p>
+<p style="text-align: left;"><span style="font-size: 14pt;">Donde:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;"><strong>f(n)</strong>  = es el <strong>estimador del camino</strong> de menor coste (considerado desde el<strong> estado inicial</strong> hasta un nodo meta pasando por el nodo <strong>n</strong>).</span></li>
+<li><span style="font-size: 18.6667px;"><strong>g(n)</strong> = es el <strong>coste del camino real</strong> hasta el nodo <strong>n</strong>.</span></li>
+<li><span style="font-size: 18.6667px;"><strong>h(n)</strong> = es la <strong>estimación del coste</strong> de llegar a un estado meta desde el nodo <strong>n</strong>.</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;"></span></p>
+<p><span style="font-size: 14pt;">En esta línea, es importante definir lo siguiente (Ertel, 2017):</span></p>
+<div style="background-color: lightblue; border-radius: 15px;">
+<h4>Definición:</h4>
+<p><span style="font-size: 18pt;"><em>Una función heurística de estimación de coste <strong>h(n)</strong>, que nunca sobreestima el coste actual del estado <strong>n</strong> al estado meta, recibe el nombre de "<strong>admisible</strong>".</em></span><span style="font-size: 14pt;"><em></em></span></p>
+</div>
+<p><span style="font-size: 14pt;">Por lo tanto, la función heurística junto con la función de evaluación<strong> f(n)</strong> y una heurística admisible <strong>h(n)</strong> recibe el nombre de <strong>algoritmo A*</strong>. Se debe destacar que este algoritmo es <strong>completo</strong> y <strong>óptimo, </strong>es decir, siempre encontrará el camino más corto para cualquier problema que tenga solución siempre y cuando está bien definida la función <strong>h(n)</strong>.</span></p>
+<h1><span style="font-size: 14pt;"></span>Cómo definir la función heurística</h1>
+<p><span style="font-size: 14pt;">En el caso de la función <em><strong>g(n)</strong></em> se puede calcular sin inconveniente, sin embargo, ¿cómo se procede en el caso de la función <em><strong>f(n)</strong></em>? Para ello, tenemos dos opciones <span>(Geeks for Geeks, 2018b):</span></span></p>
+<ol style="list-style-type: lower-alpha;">
+<li><span style="font-size: 18.6667px;">Calcular el valor exacto de <strong><em>h(n)</em></strong>, lo cual será muy costoso de llevar a cabo, o</span></li>
+<li><span style="font-size: 18.6667px;">Aproximar el valor de <em><strong>h(n)</strong></em> usando alguna heurística.</span></li>
+</ol>
+<p><span style="font-size: 18.6667px;">Para ilustrar la idea, emplearemos el ejemplo del laberinto, donde un agente busca ir de un punto de partida (celda definida por dos coordenadas "<strong>x</strong>" y "<strong>y</strong>") a un punto de llegada dado. Como se puede apreciar en la siguiente ilustración, debemos ir de la celda marcada con la letra "I" (inicio) a la celda marcada con la letra "M" (meta). En este caso, podemos usar dos métricas distintas que buscan aproximar el coste <strong>h(n)</strong>:</span></p>
+<p><span style="font-size: 18.6667px;"><img src="Laberinto-Vacio.png" alt="" width="427" height="290" style="display: block; margin-left: auto; margin-right: auto;" /></span></p>
+<ol>
+<li><span style="font-size: 18.6667px;">Distancia Manhattan:</span>
+<ul>
+<li><span style="font-size: 18.6667px;">Se calcula como la suma del valor absoluto de las diferencias de las coordenadas "x" y "y" de los puntos de partida y de llegada (o meta). Para ello, se aplica la siguiente fórmula:</span></li>
+<li><img src="Distancia_Manhattan.png" alt="" width="1261" height="35" style="display: block; margin-left: auto; margin-right: auto;" /></li>
+<li><span style="font-size: 18.6667px;">En la siguiente ilustración donde "I" es el estado de partida <strong>(1, 1)</strong> y "M" es el estado meta <strong>(5, 8)</strong>, podemos observar un ejemplo de lo que representa la distancia Manhattan:</span></li>
+<li style="text-align: left;"><img src="Ejemplo-Calculo-Distancia-Manhattan.png" alt="" width="632" height="33" /></li>
+<li style="text-align: left;"><span style="font-size: 14pt;">Como se aprecia, se tendría 11 casilleros desde el inicio hasta la meta (considerando el último paso):</span></li>
+<li><span style="font-size: 18.6667px;"><img src="Distancia_Manhattan_Laberinto.png" alt="" width="430" height="292" style="display: block; margin-left: auto; margin-right: auto;" /></span></li>
+<li><span style="font-size: 18.6667px;">¿Cuándo debemos usar esta heurística? Se debe emplear cuando solo podamos movernos en las direcciones arriba, abajo, izquierda, derecha.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Distancia Diagonal:</span>
+<ul>
+<li><span style="font-size: 18.6667px;">Representa el máximo de las diferencias absolutas de las coordenadas "x" y "y" de los puntos de partida y de llegada (o meta). Para ello, se aplica la siguiente fórmula:</span></li>
+<li><img src="Distancia_Diagonal.png" width="1183" height="31" style="display: block; margin-left: auto; margin-right: auto;" /></li>
+<li><span style="font-size: 14pt;">En la siguiente ilustración donde "I" es el estado de partida <strong>(1, 1)</strong> y "M" es el estado meta <strong>(5, 8)</strong>, podemos observar un ejemplo de lo que representa la distancia Diagonal:</span></li>
+<li><span style="font-size: 14pt;"><img src="Ejemplo-Calculo-Distancia-Diagonal.png" alt="" width="892" height="39" /></span></li>
+<li><span style="font-size: 14pt;">Como se aprecia, se tendría 7 casilleros desde el inicio hasta la meta (considerando el eje mayor, que en este caso es "y"):</span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"><img src="Distancia_Diagonal_Laberinto.png" alt="" width="434" height="294" /></span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"></span></li>
+<li><span style="font-size: 18.6667px;">¿Cuándo debemos usar esta heurística? Se debe emplear cuando solo podamos movernos en 8 direcciones (similar a cómo se mueve el caballo en el Ajedrez) (Geeks for Geeks, 2018b).</span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Distancia Euclídea:</span>
+<ul>
+<li><span style="font-size: 18.6667px;">Consiste en estimar la distancia en el punto de partida y el de llegada empleando una fórmula similar a la propuesta por Pitágoras:</span></li>
+<li><span style="font-size: 18.6667px;"><img src="Distancia_Euclidea.png" alt="" width="1186" height="41" style="display: block; margin-left: auto; margin-right: auto;" /></span></li>
+<li><span style="font-size: 18.6667px;">En la siguiente ilustración donde "I" es el estado de partida <strong>(1, 1)</strong> y "M" es el estado meta <strong>(5, 8)</strong>, podemos observar un ejemplo de lo que representa la distancia Euclídea:</span></li>
+<li><span style="font-size: 18.6667px;"><img src="Ejemplo-Calculo-Distancia-Euclidea.png" alt="" width="771" height="45" /></span></li>
+<li><span style="font-size: 18.6667px;">Como se aprecia, se tendría aproximadamente 8 casilleros desde el inicio hasta la meta:</span></li>
+<li><span style="font-size: 18.6667px;"><img src="Distancia_Euclidea_Laberinto.png" alt="" width="423" height="287" style="display: block; margin-left: auto; margin-right: auto;" /></span></li>
+<li><span style="font-size: 18.6667px;">¿Cuándo debemos usar esta heurística? Se debe emplear cuando podamos movernos en cualquier dirección (Geeks for Geeks, 2018b).</span></li>
+</ul>
+</li>
+</ol>
+<p><span style="font-size: 18.6667px;">A fin de ilustrar cómo se realiza el proceso de búsqueda con este algoritmo, vamos a usar como ejemplo el siguiente grafo, donde se ha colocado las distancias entre los nodos de acuerdo a los criterios que se detallan a continuación:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Con color negro tenemos la distancia entre dos nodos datos. Por ejemplo, la distancia entre el nodo "A" y "B" es de 3 unidades. Estos valores representan el valor que devuelve la función <em><strong>g(n)</strong></em>.</span></li>
+<li><span style="font-size: 18.6667px;">Con color rojo y dentro de los rectángulos se puede apreciar la distancia estimada del nodo a la meta "M" señalada con color verde. Por ejemplo, la distancia estimada del nodo "A" a la meta es de 7 unidades. La distancia estimada del nodo "F" a la meta es 0.5. Estos valores representan el valor que devuelve la función <strong><em>h(n)</em></strong> del algoritmo.</span></li>
+<li><span style="font-size: 18.6667px;">Finalmente, la distancia estimada del nodo "M" a la meta es (a sí mismo) es 0.</span></li>
+</ul>
+<p style="text-align: center;"><span style="font-size: 18.6667px;"><img src="Problema_Viajero-Con-Distancias-A-1.png" width="583" height="414" /></span></p>
+<p style="text-align: left;"><span style="font-size: 18.6667px;">En los siguientes pasos vamos a buscar el camino con el menor coste posible hasta la meta "M". Es importante señalar que <strong>este algoritmo trabaja de forma similar a la búsqueda por Coste Uniforme</strong>, ya que emplea una <strong>Cola</strong> para colocar los nodos a visitar de acuerdo al valor que devuelve la función <em><strong>f(n)</strong></em>. Del mismo modo, se utiliza una lista con los nodos ya visitados. Con ello, colocará en la Cola ordenados por menor coste los nodos que irá expandiendo y el nodo de partida en la lista de visitados.</span><span style="font-size: 18.6667px;"></span></p>
+<ol>
+<li><span style="font-size: 18.6667px;">Como primer paso, determinamos las acciones (caminos) que se pueden tomar desde el nodo de partida "A" hacia los demás nodos. Con ello, podemos movernos a los nodos "D", "B" y "C" con los siguientes costes: </span>
+<ul>
+<li><span style="font-size: 18.6667px;">Coste de ir por el nodo <strong><em>"D" =&gt; f(D) = g(n) + h(n) = 2 + 9 = 11.</em></strong></span></li>
+<li><span style="font-size: 18.6667px;">Coste de ir por el nodo <strong><em>"B" =&gt; f(B) = 3 + 6.3 = 9.3</em></strong></span></li>
+<li><span style="font-size: 18.6667px;">Coste de ir por el nodo <strong><em>"C" =&gt; f(C) = 5 + 5.7 = 10.7</em></strong></span></li>
+<li><span style="font-size: 18.6667px;">Con ello, agregamos esos nodos a la cola de acuerdo a su coste y visitaremos el que tenga menor coste (en este caso "B"):</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Cola = {B (9.3), C(10.7), D(11)}</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Visitados = {A (12) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong><img src="Problema_Viajero-Con-Distancias-A-2.png" width="583" height="403" style="display: block; margin-left: auto; margin-right: auto;" /></strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong></strong></em></span></li>
+</ul>
+</li>
+<li><span style="font-size: 14pt;"> Ahora pasamos a analizar a qué nodos podemos ir a partir del nodo "B". Aquí tenemos 1 sola opción (ya que el camino al nodo "G" es en sentido inverso, y no podemos llegar a dicho nodo desde "B"). Con ello, tenemos que lo siguiente: Coste de ir al nodo "C" a través de "B": <strong style="font-size: 14pt;">f(C) = (3+3) + 6.3 = 12.3.</strong>  Este coste es igual a 12.3 porque no debemos olvidar que la función g(n) calcula el coste real del nodo de partida al nodo dado, con ello, para llegar del nodo "A" al nodo "C" debo primero a "B" que tiene un coste de 3, y luego al nodo "C" que tiene un coste de 3 también. Agregamos a la cola el nuevo nodo y marcamos como visitado al nodo "B" (luego de comprobar que no es nodo meta):</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>Cola = {C(10.7), D(11), C(12.3)}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {A (12), B(9.3) }</em></strong></span></li>
+<li><span style="font-size: 14pt;">Como podemos apreciar, el camino más corto es ir por el nodo "C", por lo tanto escogemos esa opción:</span></li>
+<li><span style="font-size: 14pt;"><img src="Problema_Viajero-Con-Distancias-A-3.png" width="583" height="403" style="display: block; margin-left: auto; margin-right: auto;" /></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Desde el nodo "C" tenemos 2 posibles caminos, uno nos lleva al nodo "E" con un cos<span style="font-size: 14pt;">te  </span><strong><span style="font-size: 14pt;"><em>f</em></span><em><span style="font-size: 14pt;">(</span>E) = (5+3) + 7 = 15 </em></strong>y el otro camino que nos lleva al nodo "G" con un coste <em><strong>f(G) = (5+4 +0.7 = 9.7</strong></em>. Agregamos estos nodos sucesores en la cola y marcamos al nodo "C" como visitado (una vez verificado que no es nodo meta):</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><em><strong>Cola = {G(9.7), D(11), C(12.3), E(15) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Visitados = {A (12), B(9.3), C(10.7) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;">Como podemos apreciar, el camino más corto es ir por el nodo "G", por lo tanto escogemos esa opción:</span></li>
+<li><span style="font-size: 18.6667px;"><img src="Problema_Viajero-Con-Distancias-A-4.png" width="652" height="393" style="display: block; margin-left: auto; margin-right: auto;" /></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Desde el nodo "G" podemos visitar el nodo "M" (que es meta) únicamente. Para ello, determinamos el coste de llegar al mismo: <strong><em>f(M) =&gt; (5+4+1)+0 = 10</em></strong>. Colocamos este nodo en la Cola y marcamos al nodo "G" como visitado (una vez verificado que no es nodo meta):</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><em><strong>Cola = {M(10), D(11), C(12.3), E(15) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Visitados = {A (12), B(9.3), C(10.7), G(9.7) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;">Como podemos apreciar, el camino más corto es ir por el nodo "G", por lo tanto escogemos esa opción:</span></li>
+<li><img src="Problema_Viajero-Con-Distancias-A-5.png" alt="" width="633" height="409" style="display: block; margin-left: auto; margin-right: auto;" /></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Como podemos observar en la lista, tenemos que el camino al nodo "M" es el más corto, pero dado que es un nodo meta, devolvemos como resultado la ruta que se debe recorrer:</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><strong><em>Ruta = {A, C, G, M}</em></strong></span></li>
+<li><span style="font-size: 18.6667px;">También podemos observar que el coste real ha sido de 10 unidades.</span></li>
+</ul>
+</li>
+</ol>
+<p></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper MultichoiceIdevice em_iDevice" id="id38">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Algoritmo A* y el camino con menor coste</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-38_86" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion38_86" class="block question iDevice_content">
+<p><span style="font-size: 14pt;">¿El algoritmo A* siempre encuentra el camino con el menor coste?</span></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i38_89" class="sr-av"><a href="#answer-38_89">Opción 1</a></label><input type="radio" name="option38_86" id="i38_89" class="exe-radio-option exe-radio-option-0-3-38_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-38_89"><div id="taans38_89" class="block iDevice_content">
+<p><span style="font-size: 14pt;">No, ya que ello depende de la función de estimación heurística <strong>h(n)</strong></span></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i38_410" class="sr-av"><a href="#answer-38_410">Opción 2</a></label><input type="radio" name="option38_86" id="i38_410" class="exe-radio-option exe-radio-option-1-3-38_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-38_410"><div id="taans38_410" class="block iDevice_content">
+<section class="iDevice_answer">
+<div class="iDevice_answer-content" id="answer-37_406">
+<div id="taans37_406" class="block iDevice_content">
+<p><span style="font-size: 14pt;">Sí, siempre lo hará.</span></p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i38_413" class="sr-av"><a href="#answer-38_413">Opción 3</a></label><input type="radio" name="option38_86" id="i38_413" class="exe-radio-option exe-radio-option-2-3-38_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-38_413"><div id="taans38_413" class="block iDevice_content">
+<p><span style="font-size: 14pt;">No, ello depende del problema.</span></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b38_86" class="feedback js-hidden">
+<p>Opción correcta</p>
+</section>
+<section id="sa1b38_86" class="feedback js-hidden">
+<p>Incorrecto</p>
+</section>
+<section id="sa2b38_86" class="feedback js-hidden">
+<p>Incorrecto</p>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-38_89">Opción correcta</a><span> (<a href="#sa0b38_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-38_410">Incorrecto</a><span> (<a href="#sa1b38_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-38_413">Incorrecto</a><span> (<a href="#sa2b38_86">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper activityIdevice em_iDevice" id="id39">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Ejercicio No 4: Algoritmo A*</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta39_49_2" class="block iDevice_content">
+<p><span style="font-size: 14pt;">Diseñe un grafo similar al que se ha presentado en los ejercicios de búsqueda por amplitud y profundidad, partiendo de las siguientes coordenadas de latitud y longitud: <strong>-2.8801604,-79.0071712</strong>. Para ello deberá realizar las siguientes tareas:</span></p>
+<ul>
+<li><span style="font-size: 14pt;">Emplear la herramienta Google Maps (R) con las coordenadas antes indicadas (<a href="https://www.google.com/maps/@-2.8841036,-79.011849,15z" target="_blank" title="Coordenadas ejercicio" rel="noopener noreferrer">Link</a>).</span></li>
+<li><span style="font-size: 14pt;">Definir 11 puntos de interés (El Vecino, Bellavista, Loja Argelia, Misicata, etc.) y armar el grafo.</span></li>
+<li><span style="font-size: 14pt;">Especificar como punto de partida al sector "San Sebastián" y como objetivo "Totoracocha".</span></li>
+<li><span style="font-size: 14pt;">Establecer los arcos o caminos en 1 sola dirección, por ejemplo, del nodo "Bellavista" al nodo "Loja Argelia".</span></li>
+<li><span style="font-size: 18.6667px; color: #0000ff;">Estimar la distancia entre dos puntos datos usando la herramienta de regla que provee Google Maps y definirla como<strong> h(n).</strong></span></li>
+<li><span style="font-size: 14pt; color: #0000ff;">Calcular la distancia que existe entre los puntos de interés. Para ello debe usar la "ir de un punto a otro" de Google Maps (Direcciones o Indicaciones).</span></li>
+<li><span style="font-size: 14pt;">Realizar el proceso de búsqueda de forma similar a cómo se a explicado en este apartado, almacenando para ello los datos de la lista <strong>Visitados</strong> y de la <strong>Cola</strong>.</span></li>
+</ul>
+<p><span style="font-size: 14pt;">El trabajo deberá desarrollarse de forma manual en el cuaderno.</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper readingIdevice em_iDevice" id="id40">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Actividad de lectura</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta40_50_4" class="block iDevice_content">
+<p>A fin de reforzar los conocimientos adquiridos en este apartado, se sugiere revisar el siguiente vídeo sobre un ejemplo de búsqueda empleando el Agoritmo A*:</p>
+<p></p>
+<p style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/KNXfSOx4eEE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></p>
+<p style="text-align: left;"><span style="font-size: 14pt;">Luego de haber visto el vídeo, reflexione sobre lo siguiente:</span></p>
+<ul>
+<li><span style="font-size: 14pt;">¿Cómo se calcula la distancia cuando se encuentra obstáculos en el camino?</span></li>
+<li><span style="font-size: 14pt;">¿Qué fórmula para estimar la distancia entre dos nodos se emplea y por qué?</span></li>
+<li><span style="font-size: 14pt;">¿Cómo se calcula la distancia de pasar de un nodo a otro - <em><strong>g(n)</strong></em>?</span></li>
+</ul>
+</section>
+<section id="ta40_50_5" class="block iDevice_content">
+
+</section>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="mtodos_de_bsqueda_heursticos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="referencias.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>
