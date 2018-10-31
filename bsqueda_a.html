@@ -137,17 +137,17 @@
 <li><span style="font-size: 18.6667px;"><em><strong></strong></em></span></li>
 </ul>
 </li>
-<li><span style="font-size: 14pt;"> Ahora pasamos a analizar a qué nodos podemos ir a partir del nodo "B". Aquí tenemos 1 sola opción (ya que el camino al nodo "G" es en sentido inverso, y no podemos llegar a dicho nodo desde "B"). Con ello, tenemos que lo siguiente: Coste de ir al nodo "C" a través de "B": <strong style="font-size: 14pt;">f(C) = (3+3) + 6.3 = 12.3.</strong>  Este coste es igual a 12.3 porque no debemos olvidar que la función g(n) calcula el coste real del nodo de partida al nodo dado, con ello, para llegar del nodo "A" al nodo "C" debo primero a "B" que tiene un coste de 3, y luego al nodo "C" que tiene un coste de 3 también. Agregamos a la cola el nuevo nodo y marcamos como visitado al nodo "B" (luego de comprobar que no es nodo meta):</span>
+<li><span style="font-size: 14pt;"> Ahora pasamos a analizar a qué nodos podemos ir a partir del nodo "B". Aquí tenemos 1 sola opción (ya que el camino al nodo "G" es en sentido inverso, y no podemos llegar a dicho nodo desde "B"). Con ello, tenemos que lo siguiente: Coste de ir al nodo "C" a través de "B": <strong style="font-size: 14pt;">f(C) = (3+3) + 5.7 = 11.7.</strong>  Este coste es igual a 11.7 porque no debemos olvidar que la función g(n) calcula el coste real del nodo de partida al nodo dado, con ello, para llegar del nodo "A" al nodo "C" debo primero a "B" que tiene un coste de 3, y luego al nodo "C" que tiene un coste de 3 también. Agregamos a la cola el nuevo nodo y marcamos como visitado al nodo "B" (luego de comprobar que no es nodo meta):</span>
 <ul>
-<li><span style="font-size: 14pt;"><strong><em>Cola = {C(10.7), D(11), C(12.3)}</em></strong></span></li>
+<li><span style="font-size: 14pt;"><strong><em>Cola = {C(10.7), D(11), C(11.7)}</em></strong></span></li>
 <li><span style="font-size: 14pt;"><strong><em>Visitados = {A (12), B(9.3) }</em></strong></span></li>
 <li><span style="font-size: 14pt;">Como podemos apreciar, el camino más corto es ir por el nodo "C", por lo tanto escogemos esa opción:</span></li>
 <li><span style="font-size: 14pt;"><img src="Problema_Viajero-Con-Distancias-A-3.png" width="583" height="403" style="display: block; margin-left: auto; margin-right: auto;" /></span></li>
 </ul>
 </li>
-<li><span style="font-size: 18.6667px;">Desde el nodo "C" tenemos 2 posibles caminos, uno nos lleva al nodo "E" con un cos<span style="font-size: 14pt;">te  </span><strong><span style="font-size: 14pt;"><em>f</em></span><em><span style="font-size: 14pt;">(</span>E) = (5+3) + 7 = 15 </em></strong>y el otro camino que nos lleva al nodo "G" con un coste <em><strong>f(G) = (5+4 +0.7 = 9.7</strong></em>. Agregamos estos nodos sucesores en la cola y marcamos al nodo "C" como visitado (una vez verificado que no es nodo meta):</span>
+<li><span style="font-size: 18.6667px;">Desde el nodo "C" tenemos 2 posibles caminos, uno nos lleva al nodo "E" con un cos<span style="font-size: 14pt;">te  </span><strong><span style="font-size: 14pt;"><em>f</em></span><em><span style="font-size: 14pt;">(</span>E) = (5+3) + 7 = 15 </em></strong>y el otro camino que nos lleva al nodo "G" con un coste <em><strong>f(G) = (5+4) +0.7 = 9.7</strong></em>. Agregamos estos nodos sucesores en la cola y marcamos al nodo "C" como visitado (una vez verificado que no es nodo meta):</span>
 <ul>
-<li><span style="font-size: 18.6667px;"><em><strong>Cola = {G(9.7), D(11), C(12.3), E(15) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Cola = {G(9.7), D(11), C(11.7), E(15) }</strong></em></span></li>
 <li><span style="font-size: 18.6667px;"><em><strong>Visitados = {A (12), B(9.3), C(10.7) }</strong></em></span></li>
 <li><span style="font-size: 18.6667px;">Como podemos apreciar, el camino más corto es ir por el nodo "G", por lo tanto escogemos esa opción:</span></li>
 <li><span style="font-size: 18.6667px;"><img src="Problema_Viajero-Con-Distancias-A-4.png" width="652" height="393" style="display: block; margin-left: auto; margin-right: auto;" /></span></li>
@@ -155,7 +155,7 @@
 </li>
 <li><span style="font-size: 18.6667px;">Desde el nodo "G" podemos visitar el nodo "M" (que es meta) únicamente. Para ello, determinamos el coste de llegar al mismo: <strong><em>f(M) =&gt; (5+4+1)+0 = 10</em></strong>. Colocamos este nodo en la Cola y marcamos al nodo "G" como visitado (una vez verificado que no es nodo meta):</span>
 <ul>
-<li><span style="font-size: 18.6667px;"><em><strong>Cola = {M(10), D(11), C(12.3), E(15) }</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Cola = {M(10), D(11), C(11.7), E(15) }</strong></em></span></li>
 <li><span style="font-size: 18.6667px;"><em><strong>Visitados = {A (12), B(9.3), C(10.7), G(9.7) }</strong></em></span></li>
 <li><span style="font-size: 18.6667px;">Como podemos apreciar, el camino más corto es ir por el nodo "G", por lo tanto escogemos esa opción:</span></li>
 <li><img src="Problema_Viajero-Con-Distancias-A-5.png" alt="" width="633" height="409" style="display: block; margin-left: auto; margin-right: auto;" /></li>
