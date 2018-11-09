@@ -9104,7 +9104,9 @@ text through the text editing buttons associated with the field."></unicode>
 &lt;div&gt;
 &lt;div class=&quot;highlighted-code language-python&quot;&gt;
 &lt;div&gt;
-&lt;pre&gt;&lt;span style=&quot;font-size: 24pt;&quot;&gt;&lt;code&gt;import gym
+&lt;div class=&quot;highlighted-code language-python line-numbers&quot;&gt;
+&lt;div&gt;
+&lt;pre&gt;&lt;code&gt;import gym
 import universe # register Universe environments into Gym
 
 env = gym.make('flashgames.DuskDrive-v0') # any Universe environment ID here
@@ -9114,7 +9116,16 @@ while True:
   # agent which presses the Up arrow 60 times per second
   action_n = [[('KeyEvent', 'ArrowUp', True)] for _ in observation_n]
   observation_n, reward_n, done_n, info = env.step(action_n)
-  env.render()&lt;/code&gt;&lt;/span&gt;&lt;/pre&gt;
+  env.render()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlighted-code language-python line-numbers&quot;&gt;
+&lt;div&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;pre&gt;&lt;span style=&quot;font-size: 24pt;&quot;&gt;&lt;code&gt; &lt;/code&gt;&lt;/span&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -9132,13 +9143,17 @@ while True:
 &lt;div&gt;
 &lt;div class=&quot;highlighted-code language-python&quot;&gt;
 &lt;div&gt;
-&lt;pre&gt;&lt;span style=&quot;font-size: 24pt;&quot;&gt;&lt;code&gt;import gym
+&lt;div class=&quot;highlighted-code language-python line-numbers&quot;&gt;
+&lt;div&gt;
+&lt;pre&gt;&lt;code&gt;import gym
 env = gym.make(&quot;Taxi-v1&quot;)
 observation = env.reset()
 for _ in range(1000):
   env.render()
   action = env.action_space.sample() # your agent here (this takes random actions)
-  observation, reward, done, info = env.step(action)&lt;/code&gt;&lt;/span&gt;&lt;/pre&gt;
+  observation, reward, done, info = env.step(action)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -10123,7 +10138,7 @@ complete this learning."></unicode>
   <string role="key" value="compatibleWithVersion9"></string>
   <bool value="0"></bool>
   <string role="key" value="currentNode"></string>
-  <reference key="179"></reference>
+  <reference key="173"></reference>
   <string role="key" value="dublinCore"></string>
   <instance class="exe.engine.package.DublinCore">
    <dictionary>
