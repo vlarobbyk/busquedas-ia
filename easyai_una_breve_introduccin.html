@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_highlighter.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>easyAI: Una breve introducción | Introducción a los métodos de búsqueda en Inteligencia Artificial </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Vladimir Robles Bykbaev" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_highlighter.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-19"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Introducción a los métodos de búsqueda en Inteligencia Artificial</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="daddy">Representación de problemas y estrategias de solución</a>
+   <ul class="other-section">
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul class="other-section">
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_heursticos.html" class="daddy">Métodos de búsqueda heurísticos</a>
+   <ul class="other-section">
+      <li><a href="bsqueda_a.html" class="no-ch">Búsqueda A*</a></li>
+      <li><a href="bsqueda_por_ascenso_de_colinas.html" class="no-ch">Búsqueda por Ascenso de Colinas</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="introduccin_a_los_algoritmos_para_juegos.html" class="current-page-parent daddy">Introducción a los algoritmos para juegos</a>
+   <ul>
+      <li><a href="algunas_libreras_para_desarrollo_de_videojuegos_con_ia.html" class="no-ch">Algunas librerías para desarrollo de videojuegos con IA</a></li>
+      <li id="active"><a href="easyai_una_breve_introduccin.html" class="active no-ch">easyAI: Una breve introducción</a></li>
+   </ul>
+   </li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="algunas_libreras_para_desarrollo_de_videojuegos_con_ia.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="referencias.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">easyAI: Una breve introducción</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id45">
+<div class="iDevice emphasis0">
+<div id="ta45_85" class="block iDevice_content">
+<h2>Instalación</h2>
+<p><span style="font-size: 14pt;">El proceso de instalación de <a href="http://zulko.github.io/easyAI/index.html" target="_blank" rel="noopener noreferrer"><strong><em>easyAI</em></strong></a> es bastante sencillo, se puede utilizar el gestor de paquetes de Python o realizar la instalación una vez descargado el código fuente:</span></p>
+<p><span style="font-size: 14pt;">a) Activamos uno de los entornos virtuales de Python y ejecutamos el siguiente comando (Zulko, 2018):</span></p>
+<div class="highlighted-code language-processing">
+<div>
+<pre><code><span style="font-size: 14pt;">sudo pip install easyAI</span></code></pre>
+</div>
+</div>
+<p><span style="font-size: 14pt;">b) Descargamos el código fuente de la página oficial en GitHub, descomprimimos el fichero y ejecutamos el siguiente comando (dentro de la carpeta generada):</span><span></span></p>
+<div class="highlighted-code language-processing">
+<div>
+<pre><code><span><span style="font-size: 14pt;">sudo python setup.py install</span></span></code></pre>
+</div>
+</div>
+<h2>Ejemplo de desarrollo</h2>
+<p><span style="font-size: 14pt;">A fin de desarrollar un juego, debemos realizar las siguientes actividades (Zulko, 2018):</span></p>
+<ol>
+<li><span style="font-size: 18.6667px;">Crear una clase en Python que extienda de la clase <a href="http://zulko.github.io/easyAI/ref.html" target="_blank" rel="noopener noreferrer"><strong><em>TwoPlayersGame</em></strong></a> de easyAI</span></li>
+<li><span style="font-size: 18.6667px;">Redefinir los siguientes métodos que se heredan de la clase TwoPlayersGame: </span>
+<ol style="list-style-type: lower-alpha;">
+<li><span style="font-size: 18.6667px;"><strong><em>__init__(self, players, ...)</em></strong>: Este método representa el constructor de la clase y permite inicializar las principales características del juego.</span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>possible_moves(self)</em></strong>: En función del tipo de juego, debemos indicar cuáles son movimientos permitidos para cada jugador.</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>make_move(self)</strong></em>: Permite pasar al siguiente estado del juego.</span></li>
+</ol>
+</li>
+<li><span style="font-size: 18.6667px;">Los siguientes métodos se pueden redefinir si se desea:</span>
+<ol style="list-style-type: lower-alpha;">
+<li><span style="font-size: 18.6667px;"><em><strong>show(self)</strong></em>: Permite imprimir o mostrar en pantalla el juego.</span></li>
+<li><span style="font-size: 18.6667px;"><strong>scoring(self)</strong>: Provee el puntaje que van obteniendo los jugadores.</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>unmake_move(self, movimiento)</strong></em>: permite deshacer un movimiento. Esto ayuda a que la máquina de IA sea más inteligente.</span></li>
+<li><span style="font-size: 18.6667px;"><strong><em>ttentry(self)</em></strong>: devuelve una cadena o tupla de datos con la descripción del juego.</span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>ttrestore(self, entrada)</strong></em>:  usa una cadena o tupla como entrada para restaurar el juego.</span></li>
+</ol>
+</li>
+<li><span style="font-size: 18.6667px;">El constructor de la clase (<strong><em>__init__</em></strong>) deberá realizar las siguientes tareas:</span>
+<ol style="list-style-type: lower-alpha;">
+<li><span style="font-size: 18.6667px;">Almacenar los jugadores (lista de 2 jugadores) en el atributo <strong><em>self.players</em></strong></span></li>
+<li><span style="font-size: 18.6667px;">Indicar qué jugador inicia el juego (a través de la variable <strong><em>self.nplayer = 1 # o 2</em></strong>)</span></li>
+</ol>
+</li>
+</ol>
+<div class="highlighted-code language-python">
+<div>
+<div class="highlighted-code language-python">
+<div>
+<div class="highlighted-code language-python line-numbers">
+<div>
+<pre><code>from easyAI import TwoPlayersGame, Human_Player, AI_Player, Negamax
+import numpy as np
+
+class TresEnRaya(TwoPlayersGame):
+    
+    def __init__(self,nplayers):
+        self.tablero = np.zeros((3,3),dtype = int)
+        self.nplayer = 1
+        self.mapa = {}
+        cont = 1
+        for i in range(len(self.tablero)):
+            for j in range(len(self.tablero)):
+                self.mapa[cont]=(i,j)
+                cont+=1
+                
+        #print(self.mapa)
+        self.players = nplayers
+        
+
+    def possible_moves(self):
+        moves = []
+        cont = 1
+        for i in range(len(self.tablero)):
+            for j in range(len(self.tablero)):
+                if self.tablero[i][j] == 0:
+                    moves.append(cont)
+                cont+=1
+                
+        #print(moves)
+        return moves
+    
+    def make_move(self,casillero):
+        pos = self.mapa[casillero]
+        self.tablero[pos[0]][pos[1]] = self.nplayer
+        
+    def unmake_move(self,casillero):
+        pos = self.mapa[casillero]
+        self.tablero[pos[0]][pos[1]] = 0
+        
+    def lose(self):
+        for i in range(len(self.tablero)):
+            if np.all(self.tablero[i,:]==self.nopponent,axis = 0) or np.all(self.tablero[:,i]==self.nopponent,axis = 0):
+                return True
+        
+        
+        if self.tablero[0][0]==self.nopponent and self.tablero[1][1]==self.nopponent and self.tablero[2][2]==self.nopponent:
+            return True
+        
+        if self.tablero[2][0]==self.nopponent and self.tablero[1][1]==self.nopponent and self.tablero[0][2]==self.nopponent:
+            return True
+        
+        return False
+    
+    
+    def show(self):
+        print(self.tablero)
+        
+        
+    def scoring(self):
+        return -100 if self.lose() else 0
+
+        
+    def is_over(self):
+        return (self.possible_moves() == [] or self.lose())
+            
+    
+if __name__=="__main__":
+    ai_algo = Negamax(6)
+    tresenraya = TresEnRaya([Human_Player(),AI_Player(ai_algo)])
+    tresenraya.play()</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2></h2>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper readingIdevice em_iDevice" id="id46">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Actividad de lectura: Revisión del Algoritmo MiniMax</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta46_46_4" class="block iDevice_content">
+<p><span style="font-size: 14pt;">Realizar una investigación sobre el algoritmo Minimax y Alpha-Beta prunning y preparar un informe empleando una herramienta Web 2.0.</span></p>
+<p><span style="font-size: 14pt;">Para ello, deberá realizar las siguientes actividades:<br /></span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Revisar la historia de los algoritmos (de acuerdo a lo planteado por Alan Turing para el caso del Minimax).</span></li>
+<li><span style="font-size: 18.6667px;">Explicar mediante un ejemplo práctico el funcionamiento del algoritmo.</span></li>
+<li><span style="font-size: 18.6667px;">Realizar una propuesta de cómo emplear el algoritmo en su problema del laberinto.</span></li>
+<li><span style="font-size: 18.6667px;">Revisar al menos 4 papers científicos de aplicaciones prácticas de este algoritmo y su variante.</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;">Puede emplear las siguientes fuentes:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Tic Tac Toe: Understanding the Minimax Algorithm. <a href="https://www.neverstopbuilding.com/blog/minimax" target="_blank" rel="noopener noreferrer"><strong><em>WebSite</em></strong></a>.</span></li>
+<li><span style="font-size: 18.6667px;">Minimax Algorithm with Alpha-beta pruning. <strong><em><a href="https://www.hackerearth.com/blog/artificial-intelligence/minimax-algorithm-alpha-beta-pruning/" target="_blank" rel="noopener noreferrer">WebSite</a></em></strong>.</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;">El link del informe debe ser cargado al AVAC.</span></p>
+</section>
+<section id="ta46_46_5" class="block iDevice_content">
+
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper activityIdevice em_iDevice" id="id47">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Actividad Práctica No. 6a y 6b:</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta47_47_2" class="block iDevice_content">
+<p><span style="font-size: 14pt;">Desarrollar un mini-juego (tema libre) empleando una de las 2 siguientes alternativas:</span></p>
+<ol style="list-style-type: lower-alpha;">
+<li><span style="font-size: 18.6667px;">easyAI</span></li>
+<li><span style="font-size: 18.6667px;">Universe + GYM</span></li>
+</ol>
+<p><span style="font-size: 18.6667px;">El juego deberá implementar algún algoritmo de IA y de igual forma, generar un informe de movimientos, puntajes y quién gana la partida. El informe deberá ser cargado junto con el trabajo de revisión del algoritmo MiniMax.</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="algunas_libreras_para_desarrollo_de_videojuegos_con_ia.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="referencias.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

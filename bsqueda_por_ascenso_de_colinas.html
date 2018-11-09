@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Búsqueda por Ascenso de Colinas | Introducción a los métodos de búsqueda en Inteligencia Artificial </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Vladimir Robles Bykbaev" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-16"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Introducción a los métodos de búsqueda en Inteligencia Artificial</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="daddy">Representación de problemas y estrategias de solución</a>
+   <ul class="other-section">
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul class="other-section">
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="mtodos_de_bsqueda_heursticos.html" class="current-page-parent daddy">Métodos de búsqueda heurísticos</a>
+   <ul>
+      <li><a href="bsqueda_a.html" class="no-ch">Búsqueda A*</a></li>
+      <li id="active"><a href="bsqueda_por_ascenso_de_colinas.html" class="active no-ch">Búsqueda por Ascenso de Colinas</a></li>
+   </ul>
+   </li>
+   <li><a href="introduccin_a_los_algoritmos_para_juegos.html" class="daddy">Introducción a los algoritmos para juegos</a>
+   <ul class="other-section">
+      <li><a href="algunas_libreras_para_desarrollo_de_videojuegos_con_ia.html" class="no-ch">Algunas librerías para desarrollo de videojuegos con IA</a></li>
+      <li><a href="easyai_una_breve_introduccin.html" class="no-ch">easyAI: Una breve introducción</a></li>
+   </ul>
+   </li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="bsqueda_a.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="introduccin_a_los_algoritmos_para_juegos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Búsqueda por Ascenso de Colinas</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id41">
+<div class="iDevice emphasis0">
+<div id="ta41_85" class="block iDevice_content">
+<p><span style="font-size: 14pt;">La búsqueda por ascenso de colinas (<em>Hill Climbing</em>) es una de las técnicas que comúnmente se emplean cuando el algoritmo A* falla. De igual forma, otras técnicas que también se emplean en estos casos son la búsqueda "<em>simulated annealing</em>" y los algoritmos genéticos (Marcus, 2015).</span></p>
+<p><span style="font-size: 18.6667px;">Algunas de las características más importantes de este tipo de búsqueda son las que se señalan a continuación (Marcus, 2015):</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Realizada una búsqueda local y moverse a los estados vecinos.</span></li>
+<li><span style="font-size: 18.6667px;">Fundamento base: <strong><em>comenzar con una estimación inicial de la solución e ir mejorándola gradualmente hasta que sea una solución</em></strong>.</span></li>
+<li><span style="font-size: 18.6667px;">Ventajas de este algoritmo: </span>
+<ul>
+<li><span style="font-size: 18.6667px;">Usa poca memoria</span></li>
+<li><span style="font-size: 18.6667px;">Es capaz de encontrar con frecuencia soluciones <strong><em>razonables</em></strong> en espacios de estados muy grandes o infinitos.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Es importante destacar que este algoritmo es sumamente útil para problemas de optimización pura:</span>
+<ul>
+<li><span style="font-size: 18.6667px;">Encuentra o aproxima el mejor estado de acuerdo a una<strong><em> función objetivo</em></strong>.</span></li>
+<li><span style="font-size: 18.6667px;">Es óptimo si el espacio de búsqueda es <strong><em>convexo</em></strong><em></em>. Para conocer qué es un espacio convexo de búsqueda ver el siguiente artículo (página 13, figura 5): <a href="https://www.researchgate.net/publication/282075810_Optimum_Design_of_Prestressed_Concrete_Flat_Slab_Systems_under_Gravity_Loads" target="_blank" rel="noopener noreferrer">Artículo</a> (será parte de la prueba y el examen).</span></li>
+</ul>
+</li>
+</ul>
+<p><span style="font-size: 18.6667px;">Es muy importante destacar que la función objetivo puede ser de <span style="color: #ff0000;"><em><strong>minimización </strong></em><span style="color: #000000;">o</span><strong></strong><em><strong> maximación</strong></em></span>, esto dependerá del problema!.</span></p>
+<p><span style="font-size: 18.6667px;">El algoritmo de búsqueda por ascenso de colinas se realiza a través de los siguientes pasos (Marcus, 2015;  <span>Geeks for Geeks, 2018c</span><span>)</span>:</span></p>
+<div style="background-color: lightblue; border-radius: 15px;">
+<h4>Pasos para ejecutar la búsqueda:</h4>
+<p><span style="font-size: 14pt;"><i><strong>Paso 1:</strong> Evaluar el estado inicial. Si es un estado meta, entonces detener la búsqueda y devolver el estado. En caso contrario, marcar al estado inicial como estado actual.</i></span></p>
+<p><span style="font-size: 14pt;"><i><strong>Paso 2:</strong> Repetir hasta que se encuentre el estado meta o hasta que no existan más operadores u acciones que se puedan tomar en el estado actual.</i></span></p>
+<ol style="list-style-type: lower-alpha;">
+<li><span style="font-size: 18.6667px;"><i>Seleccionar el estado al que aún no se marca como estado actual y analizarlo para desplegar un nuevo estado. Para ello, dado el estado actual "<strong>n</strong>" y para determinar el sucesor "<strong>s</strong>" empleamos la siguiente fórmula, donde <strong>f(s)</strong> es la <strong>función objetivo</strong>: </i></span>
+<ul>
+<li><span style="font-size: 18.6667px;"><i><img src="funcion_seleccionar_nodo_hill-climbing.png" alt="" width="303" height="47" /><br /></i></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;"><i>Ejecutar las siguientes acciones para evaluar el nuevo estado:</i></span>
+<ol>
+<li><span style="font-size: 18.6667px;"><i>Si el estado actual es un estado objetivo detener el algoritmo y retornar.</i></span></li>
+<li><span style="font-size: 18.6667px;"><i>Si existe un mejor estado que el actual, marcarlo como estado actual y proceder adelante:</i></span>
+<ul>
+<li><span style="font-size: 18.6667px;"><i>Si <strong>f(n) &lt; f(s)</strong>, nos moveremos a estado "<strong>s</strong>". Recuerde, esta función puede ser maximización o minimización, todo dependerá del problema.</i></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;"><i>Si no existe un mejor estado que el actual, quedarse en el estado actual "<strong>n</strong>" y continuar con el bucle hasta encontrar una solución.</i></span></li>
+</ol>
+</li>
+</ol>
+<p><span style="font-size: 18.6667px;"><i><strong>Paso 3:</strong> Salir.</i></span><span style="font-size: 24px;"><i></i></span></p>
+</div>
+<h3>Propiedades del algoritmo:</h3>
+<p><span style="font-size: 14pt;">Algunas de las propiedades más destacadas de este algoritmo son las que se apuntan seguidamente (Marcus, 2015):</span></p>
+<ul>
+<li><span style="font-size: 14pt;">El algoritmo termina cuando encuentra un pico o valle (dependiendo si la función es de maximización o minimización).</span></li>
+<li><span style="font-size: 14pt;">No analiza los vecinos inmediatos del estado actual.</span></li>
+<li><span style="font-size: 14pt;">Escoge de forma aleatoria un estado si existieren más de 1 que sea la mejor opción.</span></li>
+<li><span style="font-size: 14pt;">No realiza <strong><em>backtracking</em></strong>, ya que no recuerda dónde está.</span></li>
+<li><span style="font-size: 14pt;">Es importante anotar que el algoritmo puede quedarse en un máximo o mínimo local, y no hallar la mejor solución:</span></li>
+</ul>
+<p style="text-align: center;"><span style="font-size: 14pt;"><img src="Extrema_example_es.svg.png" alt="" width="483" height="360" /></span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;">Ejemplo de máximo y mínimo local vs máximo y mínimo global (Wikipedia, 2018).</span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"></span></p>
+<p style="text-align: left;"><span style="font-size: 14pt;">A fin de ilustrar cómo funciona este algoritmo, vamos a trabar con el siguiente grafo, donde se deberá tomar en cuenta las siguientes consideraciones:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">El nodo de partida es "A", mientras que el nodo de llegada es "M".</span></li>
+<li><span style="font-size: 18.6667px;">El coste de cada nodo al nodo meta, se determina a través una función heurística. En nuestro caso los valores se han colocado dentro de cada nodo.</span></li>
+<li><span style="font-size: 18.6667px;">Para este problema escogeremos el nodo con el menor coste (minimización).</span></li>
+</ul>
+<p><span style="font-size: 18.6667px;"><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-1.png" alt="" width="583" height="444" style="display: block; margin-left: auto; margin-right: auto;" /></span></p>
+<ol>
+<li><span style="font-size: 14pt;">Como primer paso, analizamos las acciones que podemos tomar desde el nodo "A" (dado que hemos comprobado que no es un nodo meta). Como se aprecia, tenemos 3 caminos que se pueden seguir: "B", "C" y "D" con costes 4, 5 y 2, respectivamente. El algoritmo escogerá el de menor coste, en este caso el camino por el nodo "D". Anotamos que hemos tomado la primera decisión (con un número 1 junto a los nodos) y marcamos como visitado al nodo "D". Es importante notar que aquí también podemos tener una especie de Cola donde se guardan las decisiones que vamos tomando:</span><br />
+<ul>
+<li><span style="font-size: 14pt;"><em><strong>Visitados = {A, D}</strong></em></span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-2.png" alt="" width="585" height="417" /></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Como observamos, en la etapa 1 tomamos la decisión de ir por el nodo "D", el que tiene menor coste. Comprobamos que este nodo no es meta, y dado que no es posible obtener sucesores, volvemos a analizar en la etapa 1 qué otras opciones nos quedan. En este caso, tenemos los nodos "B" y "C", y dado que el nodo "B" es el de menor coste, lo elegimos y lo marcamos como visitado:</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {A, D, B}</em></strong></span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"><strong><em><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-3.png" alt="" width="585" height="417" /></em></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">A continuación verificamos que el nodo "B" no sea un nodo meta, y dado que no lo es analizamos las posibles acciones que podemos tomar desde el mismo. En este caso tenemos dos  sucesores, el nodo "G" y el nodo "C". Escogemos el nodo con menor coste y tomamos la segunda decisión (marcando con un número 2 a los sucesores de "B") y tomamos el único camino disponible:</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {A, D, B, G}</em></strong></span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"><strong><em><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-4.png" alt="" width="585" height="417" /></em></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">A continuación comprobamos que el nodo "G" no sea un nodo meta, y dado que no lo es, analizamos sus posible sucesores. Como únicamente existe el nodo "H", no nos queda otra alternativa que tomar este camino. Marcamos al nodo "G" como visitado, y anotamos que hemos tomado la tercera decisión expandiendo los sucesores de "G", que en este caso solo es el nodo "H":</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong><em>Visitados = {A, D, B, G, H}</em></strong></span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"><strong><em><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-5.png" alt="" width="587" height="444" /><br /></em></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">En este paso comprobamos que "H" no sea nodo meta para continuar, como no lo es, tratamos de expandir sus sucesores. En este caso, el nodo "H" no tiene sucesores, por lo que debemos volver al punto donde tomamos la decisión 1. Como sí existen opciones que no hemos explorado en el punto donde se tomó la decisión 1, tomamos el camino "C". Recuerde, si no hubiese más opciones en la decisión 1, deberíamos buscar en la 2, y así sucesivamente. Ahora pasamos a expandir el nodo "C" y marcar como visitado al nodo "H":</span>
+<ul>
+<li><span style="font-size: 14pt;"><em><strong>Visitados = {A, D, B, G, H}</strong></em></span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"><em><strong><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-6.png" alt="" width="587" height="444" /></strong></em></span></li>
+</ul>
+</li>
+<li><span style="font-size: 14pt;">En esta etapa verificamos que "H" no sea un nodo meta y analizamos cuáles son las posibles acciones que se pueden tomar desde el nodo "C". En este caso, tenemos 2 alternativas: "E" y "G". Sin embargo, dado que "G" ya se visitó, tomamos el camino "E". Para ello, marcamos como visitado al nodo "C" y desplegamos sus sucesores (anotando que es la decisión 4 la que tomamos):</span>
+<ul>
+<li><span style="font-size: 14pt;"><strong>Visitados = {A, D, B, G, H, C}</strong></span></li>
+<li style="text-align: center;"><span style="font-size: 14pt;"><strong><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-7.png" alt="" width="587" height="444" /></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">Verificamos que el nodo "E" no sea un nodo meta, y dado que no lo es, analizamos sus sucesores. En este caso tenemos dos: "F" y "D". Dado que "D" ya se visitó, tomamos el camino por "F" y anotamos que se elije abrirlo en la quinta decisión (previo a marcar al nodo "E" como visitado):</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><em><strong>Visitados = {A, D, B, G, H, C, E}</strong></em></span></li>
+<li style="text-align: center;"><span style="font-size: 18.6667px;"><em><strong><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-8.png" alt="" width="587" height="444" /></strong></em></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">A continuación verificamos que el nodo "F" no sea nodo meta, y dado que no lo es, procedemos a analizar la posibles acciones que se pueden tomar en este nodo. En este caso, solo podemos desplegar al nodo "M" (cuyo coste es 0). Anotamos como visitado al nodo "F" y desplegamos su sucesor, anotando que tomamos la sexta decisión:</span>
+<ul>
+<li><span style="font-size: 18.6667px;"><strong><em>Visitados = {A, D, B, G, H, C, E, F}</em></strong></span></li>
+<li style="text-align: center;"><span style="font-size: 18.6667px;"><strong><em><img src="Problema_Viajero-Con-Distancias-Hill-Climbing-9.png" alt="" width="587" height="444" /></em></strong></span></li>
+</ul>
+</li>
+<li><span style="font-size: 18.6667px;">En este paso verificamos que el nodo "M" sí es un nodo meta, detenemos la búsqueda y devolvemos la ruta elegida:</span>
+<ul>
+<li><span style="font-size: 14pt;"><em><strong>Visitados = {A, D, B, G, H, C, E, F}</strong></em></span></li>
+<li><span style="font-size: 18.6667px;"><em><strong>Ruta = {A, C, E, F, M}</strong></em></span></li>
+</ul>
+</li>
+</ol>
+<p><span style="font-size: 14pt;"></span></p>
+<p><span style="font-size: 14pt;"></span></p>
+<p></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper readingIdevice em_iDevice" id="id42">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Actividad de lectura y Ejercicio Práctico No. 5</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta42_45_4" class="block iDevice_content">
+<p><span style="font-size: 14pt;">A fin de reforzar los conocimientos adquiridos en este apartado, se sugiere revisar el siguiente vídeo sobre un ejemplo de búsqueda empleando el Agoritmo por Ascenso de Colinas:</span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"> <iframe width="560" height="315" src="https://www.youtube.com/embed/PcwjCPiECMM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe> </span></p>
+<p><span style="font-size: 14pt;">Una vez analizado el vídeo, realice las siguientes actividades:</span></p>
+<ul>
+<li><span style="font-size: 18.6667px;">Elabore el árbol de búsqueda (similar al que se muestra en el vídeo) para el ejemplo presentado en este apartado.</span></li>
+<li><span style="font-size: 18.6667px;">Elabore el árbol de búsqueda para el problema desarrollado en los apartados anteriores (con ayuda de Google Maps y considere como heurística la distancia que devuelve la herramienta "regla").</span></li>
+</ul>
+</section>
+<section id="ta42_45_5" class="block iDevice_content">
+
+</section>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="bsqueda_a.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="introduccin_a_los_algoritmos_para_juegos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

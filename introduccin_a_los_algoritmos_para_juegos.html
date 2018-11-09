@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Introducción a los algoritmos para juegos | Introducción a los métodos de búsqueda en Inteligencia Artificial </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Vladimir Robles Bykbaev" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2ppa1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-web-site" id="exe-node-17"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Introducción a los métodos de búsqueda en Inteligencia Artificial</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Introduccion a la IA</a></li>
+   <li><a href="inteligencia_artificial_1_objetivos_a_alcanzar.html" class="no-ch">Inteligencia Artificial 1: Objetivos a alcanzar</a></li>
+   <li><a href="prerrequisitos.html" class="no-ch">Prerrequisitos</a></li>
+   <li><a href="representacin_de_problemas_y_estrategias_de_solucin.html" class="daddy">Representación de problemas y estrategias de solución</a>
+   <ul class="other-section">
+      <li><a href="bsquedas.html" class="no-ch">Búsquedas</a></li>
+      <li><a href="agentes_en_inteligencia_artificial.html" class="no-ch">Agentes en Inteligencia Artificial</a></li>
+      <li><a href="espacios_de_bsqueda_y_factor_de_ramificacin.html" class="no-ch">Espacios de búsqueda y factor de ramificación</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_sin_razonamiento.html" class="daddy">Métodos de búsqueda sin razonamiento</a>
+   <ul class="other-section">
+      <li><a href="bsqueda_por_amplitud.html" class="no-ch">Búsqueda por amplitud</a></li>
+      <li><a href="bsqueda_por_costo_uniforme.html" class="no-ch">Búsqueda por costo uniforme</a></li>
+      <li><a href="bsqueda_por_profundidad.html" class="no-ch">Búsqueda por profundidad</a></li>
+      <li><a href="ejercicios_de_refuerzo.html" class="no-ch">Ejercicios de Refuerzo</a></li>
+   </ul>
+   </li>
+   <li><a href="mtodos_de_bsqueda_heursticos.html" class="daddy">Métodos de búsqueda heurísticos</a>
+   <ul class="other-section">
+      <li><a href="bsqueda_a.html" class="no-ch">Búsqueda A*</a></li>
+      <li><a href="bsqueda_por_ascenso_de_colinas.html" class="no-ch">Búsqueda por Ascenso de Colinas</a></li>
+   </ul>
+   </li>
+   <li id="active"><a href="introduccin_a_los_algoritmos_para_juegos.html" class="active daddy">Introducción a los algoritmos para juegos</a>
+   <ul>
+      <li><a href="algunas_libreras_para_desarrollo_de_videojuegos_con_ia.html" class="no-ch">Algunas librerías para desarrollo de videojuegos con IA</a></li>
+      <li><a href="easyai_una_breve_introduccin.html" class="no-ch">easyAI: Una breve introducción</a></li>
+   </ul>
+   </li>
+   <li><a href="referencias.html" class="no-ch">Referencias</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="bsqueda_por_ascenso_de_colinas.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="algunas_libreras_para_desarrollo_de_videojuegos_con_ia.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Introducción a los algoritmos para juegos</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id43">
+<div class="iDevice emphasis0">
+<div id="ta43_85" class="block iDevice_content">
+<p><span style="font-size: 14pt;">El desarrollo de la inteligencia artificial ha estado ligado siempre a los videojuegos. Esto se debió a que varias de las aplicaciones que se desarrollaron buscaban crear agentes capaces de realizar tareas que requerían inteligencia. Justamente una de estas tareas es la de resolver juegos como el ajedrez, las damas chinas, etc.  (<span>Yannakakis y Togelius, 2018). Justamente el gran científico Alan Turing, en el año 1953 desarrolló un trabajo en el que re-inventó el algoritmo <em>Minimax</em> y lo usó para jugar al ajedrez (Turing, 1953).</span></span></p>
+<p><span style="font-size: 18.6667px;">Uno de los primeros programas que logró dominar el juego del tres en raya fue programado por A. S. Douglas en el año 1952 y formaba parte de una disertación doctoral en Cambridge. Luego de unos años, Arthur Samuel inventó una nueva forma de aprendizaje de máquina que hoy en día se conoce como el <strong><em>aprendizaje por refuerzo</em></strong>. Para ello empleó un programa que fue capaz de aprender a jugar damas chinas contra sí mismo (Yannakakis y Togelius, 2018).</span></p>
+<p><span style="font-size: 18.6667px;"></span><span style="font-size: 14pt;">En los siguientes videos podemos apreciar ejemplos en los que se emplea la inteligencia artificial para desarrollar agentes capaces de jugar de formar similar a la que la haría un ser humano:</span></p>
+<h3><span style="font-size: 14pt;"></span>Red Neuronal que aprendió a jugar a Mario Bros</h3>
+<p style="text-align: center;"><span style="font-size: 18.6667px;"><iframe width="560" height="315" src="https://www.youtube.com/embed/qv6UVOQ0F44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe> </span></p>
+<h3 style="text-align: left;"><span style="font-size: 18.6667px;"></span>Algoritmo genético y red neuronal que aprende a jugar a la serpiente</h3>
+<p style="text-align: center;"><span style="font-size: 14pt;"><iframe width="560" height="315" src="https://www.youtube.com/embed/3bhP7zulFfY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" span="">
+<p><span style="font-size: 14pt;"></span></p>
+<p><span style="font-size: 14pt;"></span></p></iframe></span></p>
+<h3><span style="font-size: 14pt;"></span>Red Neuronal y computación evolutiva para controlar vehículos en movimiento</h3>
+<p style="text-align: center;"><span style="font-size: 14pt;"><iframe width="560" height="315" src="https://www.youtube.com/embed/Aut32pR5PQA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></span></p>
+<p style="text-align: center;"><span style="font-size: 14pt;"></span></p>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="bsqueda_por_ascenso_de_colinas.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="algunas_libreras_para_desarrollo_de_videojuegos_con_ia.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>
